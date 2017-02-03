@@ -1,9 +1,70 @@
+// //////////////////////
+// MIXINS
+// /////////////////////
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: ghostwhite;
+$neutral-color: #ddd;
+$secondary-color: #1D517F;
+$dark-color: #1B202A;
+
+// //////////////////////
+// GENERAL CODE
+// /////////////////////
+
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 body {
-	background: ghostwhite;
+	background: $primary-color;
+
+}
+
+header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+    align-items: center;
+    background: $neutral-color;
+}
+
+.logo {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+    align-items: center;
+}
+
+.poster {
+	background: $secondary-color;
+	// background: url('./assets/min-code-on-screen.jpg');
+	min-height: 400px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center
+}
+
+.poster--title {
+	color: $primary-color;
+	font: 60px cursive;
+	max-width: 40%;
+	text-shadow: 5px 4px 2px black;
+}
+
+.trivia {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 40px 20px;
+}
+
+.trivia--game {
+	height: 200px;
+	width: 200px;
+	border: 3px solid $dark-color;
+	display: inline-block;
 
 }
