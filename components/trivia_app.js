@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 const TriviaApp = React.createClass({
 	render: function() {
 		return (
-			<div className="">
+			<div>
 			  	<header>
 			  		<div className="logo">
 			  			<img src="" alt="Nerdia Logo"/>
