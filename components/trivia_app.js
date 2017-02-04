@@ -1,21 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Header from './header';
 
-const TriviaApp = React.createClass({
-	render: function() {
+class TriviaApp extends React.Component {
+	render() {
 		return (
 			<div>
-			  	<header>
-			  		<div className="logo">
-			  			<img src="" alt="Nerdia Logo"/>
-				  		<h1>Nerdia Tech Trivia</h1>
-			  		</div>
-			  		<form>
-			  			<input type="search"/>
-			  			<input type="submit" value="Submit"/>
-			  		</form>
-			  		<img src="" alt="User Avatar"/>
-			  	</header>
+			  	<Header />
 			  	<main>
 			  		<div className="poster">
 			  			<h2 className="poster--title">Welcome to Nerdia Tech Trivia</h2>
@@ -44,6 +35,6 @@ const TriviaApp = React.createClass({
 
 		)
 	}
-});
+}
 
 export default TriviaApp;
