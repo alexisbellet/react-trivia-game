@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from './components/header.js';
+import Header from '../components/header';
 
 class AppLayout extends React.Component {
 	constructor() {
