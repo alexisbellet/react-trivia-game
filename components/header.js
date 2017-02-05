@@ -12,7 +12,8 @@ class Header extends React.Component {
 		  		<SearchForm />
 		  		<img src="" alt="User Avatar"/>
 		  	</header>
-		)	
+		)
+
 	}
 }
 
