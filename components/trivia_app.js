@@ -2,6 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const TriviaApp = React.createClass({
+	constructor: function(){
+		super();
+
+		this.state = {
+			games : {
+				name: '',
+				category: '',
+				questions: {}
+			}
+		}
+	}
+
 	render: function() {
 		return (
 			<div className="">
