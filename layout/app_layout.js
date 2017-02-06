@@ -5,7 +5,7 @@ import Header from '../components/header';
 class AppLayout extends React.Component {
 	constructor() {
 		super();
-		const activeView = this.props.children;
+		// const activeView = this.props.children;
 	}
 
 	// we could potentially add a footer component if we want
