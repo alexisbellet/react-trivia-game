@@ -6,7 +6,6 @@ import AppLayout from './layout/app_layout';
 
 import HomePage from './views/home_page';
 import TopicPage from './views/topic_page';
-// import TriviaApp from './components/trivia_app';
 
 require("file?name=[name].[ext]!./index.html");
 require("!style-loader!css-loader!sass-loader!./styles.scss");
@@ -16,15 +15,14 @@ require("!style-loader!css-loader!sass-loader!./styles.scss");
  * architecture that the app will use in the different views
  */
 
+
 ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route path="/" component={AppLayout}>
 			<IndexRoute component={HomePage}/>
-			<Route path=":topic" component={TopicPage}/>
+			<Route path="topic" component={TopicPage}/>
 		</Route>
 	</Router>
 ), document.getElementById("view-container"));
 
-
-// ReactDOM.render(<TriviaApp />, document.getElementById("view-container"));
 

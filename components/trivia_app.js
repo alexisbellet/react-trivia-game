@@ -4,7 +4,7 @@ import Header from './header';
 
 
 class TriviaApp extends React.Component {
-	constructor: function(){
+	constructor() {
 		super();
 
 		this.state = {
