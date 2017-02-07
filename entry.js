@@ -24,5 +24,3 @@ ReactDOM.render((
 		</Route>
 	</Router>
 ), document.getElementById("view-container"));
-
-
