@@ -1,16 +1,25 @@
 import React from 'react';
 
 class SearchForm extends React.Component {
+	goToQuiz(evt){
+		evt.preventDefault();
+		console.log(this.quizInput.value );
+	}
+
 	render() {
 		return (
 			<div>
-		  		<form>
-		  			<input type="search"/>
+		  		<form onSubmit={ this.goToQuiz.bind(this) }>
+		  			<input type="search" ref={ (input) => {this.quizInput = input} }/>
 		  			<input type="submit" value="Submit"/>
 		  		</form>
 	  		</div>
 		)
 	}
+}
+
+SearchForm.contextTypes = {
+	router: React.PropTypes.object
 }
 
 export default SearchForm;
