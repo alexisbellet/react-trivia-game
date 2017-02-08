@@ -7,7 +7,6 @@ import Header from '../components/header';
 class AppLayout extends React.Component {
 	constructor() {
 		super();
-		
 	}
 
 	// we could potentially add a footer component if we want
@@ -19,8 +18,6 @@ class AppLayout extends React.Component {
 			</div>
 		)
 	}
-}
-
-// 				
+}			
 
 export default AppLayout;
