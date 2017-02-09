@@ -2,14 +2,10 @@ import React from 'react';
 import { Link } from 'react-router';
 
 class TopicBlock extends React.Component {
-	constructor() {
-		super();
-	}
-
 	render() {
 		return (
 			<div>
-				<Link to="/topic">I am a topic bloc</Link>
+				<Link to="/topic">{ this.props.quizDetails.name }</Link>
 			</div>
 		)
 	}

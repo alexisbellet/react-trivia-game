@@ -5,8 +5,6 @@ import Quiz from '../components/quiz';
 import TopScores from '../components/top_scores';
 
 
-// import all the components to compose the view
-
 class TopicPage extends React.Component {
 	constructor() {
 		super();
