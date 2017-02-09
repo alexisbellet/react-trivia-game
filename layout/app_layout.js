@@ -7,7 +7,10 @@ import Header from '../components/header';
 class AppLayout extends React.Component {
 	constructor() {
 		super();
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 9d3f1d4e487527c7a11cd27cedc596a3f05baab5
 	}
 
 	// we could potentially add a footer component if we want
