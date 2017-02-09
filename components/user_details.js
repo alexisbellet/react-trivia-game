@@ -5,6 +5,7 @@ class UserDetails extends React.Component {
 		return (
 		  	<div className="userDetails">
 		  		<img src="" alt="User Avatar"/>
+		  		<p className="userName">lisa</p>
 		  	</div>
 		)
 

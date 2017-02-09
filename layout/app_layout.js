@@ -18,8 +18,6 @@ class AppLayout extends React.Component {
 			</div>
 		)
 	}
-}
-
-// 				
+}			
 
 export default AppLayout;
