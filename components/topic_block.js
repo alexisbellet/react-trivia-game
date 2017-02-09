@@ -5,7 +5,7 @@ class TopicBlock extends React.Component {
 	render() {
 		return (
 			<div>
-				<Link to="/topic">{ this.props.quizDetails.name }</Link>
+				<Link to={ "topic/" + (this.props.quizDetails.name).replace(/ /g, "_") }>{ this.props.quizDetails.name }</Link>
 			</div>
 		)
 	}

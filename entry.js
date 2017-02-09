@@ -32,7 +32,7 @@ ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route path="/" component={AppLayout}>
 			<IndexRoute component={HomePage}/>
-			<Route path="topic" component={TopicPage}/>
+			<Route path="topic/:topic" component={TopicPage}/>
 			<Route path="*" component={HomePage}/>
 		</Route>
 	</Router>
