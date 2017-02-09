@@ -9,17 +9,20 @@ class HomePage extends React.Component {
 		this.state = { listOfQuizes: [] };
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		const firebaseRef = firebase.database().ref('quizes');
 
 		// loops through each quiz once and pushes it in listOfQuizes
+		var quizzes = [];
 		firebaseRef.on('child_added', (snapshot) => {
-			let listOfQuizes = this.state.listOfQuizes;
+			console.log('added: ', snapshot.val())
 			let quiz = {
 				name: snapshot.key,
 				details: snapshot.val()
 			};
-			this.setState({ listOfQuizes: listOfQuizes.concat(quiz) });
+			quizzes.push(quiz);
+			this.setState({ listOfQuizes: quizzes });
+			console.log('LIST', this.state.listOfQuizes);
 		});
 	}
 
