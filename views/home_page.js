@@ -1,10 +1,26 @@
 import React from 'react';
+import firebase from 'firebase';
 
 import TopicBlock from '../components/topic_block';
 
 class HomePage extends React.Component {
 	constructor() {
 		super();
+		this.state = { listOfQuizes: [] };
+	}
+
+	componentWillMount() {
+		const firebaseRef = firebase.database().ref('quizes');
+
+		// loops through each quiz once and pushes it in listOfQuizes
+		firebaseRef.on('child_added', (snapshot) => {
+			let listOfQuizes = this.state.listOfQuizes;
+			let quiz = {
+				name: snapshot.key,
+				details: snapshot.val()
+			};
+			this.setState({ listOfQuizes: listOfQuizes.concat(quiz) });
+		});
 	}
 
 	render() {
@@ -16,19 +32,12 @@ class HomePage extends React.Component {
 					</div>
 
 					<div className="trivia">
-						<TopicBlock className="trivia--game	trivia--game01" />
-						<TopicBlock className="trivia--game  trivia--game02" />
-						<TopicBlock className="trivia--game  trivia--game03" />
-						<TopicBlock className="trivia--game  trivia--game04" />
-						<TopicBlock className="trivia--game  trivia--game05" />
-						<TopicBlock className="trivia--game  trivia--game06" />
-						<TopicBlock className="trivia--game  trivia--game07" />
-						<TopicBlock className="trivia--game  trivia--game08" />
-						<TopicBlock className="trivia--game  trivia--game09" />
-						<TopicBlock className="trivia--game  trivia--game10" />
-						<TopicBlock className="trivia--game  trivia--game11" />
-						<TopicBlock className="trivia--game  trivia--game12" />
-						<TopicBlock className="trivia--game  trivia--game13" />
+						{ this.state.listOfQuizes.map( (quiz) => (
+								<TopicBlock key={quiz.name}
+														className="trivia--game"
+														quizDetails={quiz}
+								/>
+							)) }
 					</div>
 					
 				</main>
