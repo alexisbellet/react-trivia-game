@@ -77,3 +77,31 @@ header {
 	border-radius: 50%;
 	margin: 10px;
 }
+
+// //////////////////////
+// USER DETAILS
+// /////////////////////
+
+.userDetails {
+	position: absolute;
+	background: $neutral-color;
+	right: 25px;
+	top: 100px;
+	min-width: 220px;
+	min-height: 265px;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.userDetails--avatar {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	margin: 0 0 30px;
+}
+
+
+
+
