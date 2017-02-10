@@ -6,23 +6,21 @@ import TopicBlock from '../components/topic_block';
 class HomePage extends React.Component {
 	constructor() {
 		super();
-		this.state = { listOfQuizes: [] };
+		this.state = { listOfQuizzes: [] };
 	}
 
 	componentDidMount() {
-		const firebaseRef = firebase.database().ref('quizes');
+		const firebaseRef = firebase.database().ref('quizzes');
 
-		// loops through each quiz once and pushes it in listOfQuizes
-		var quizzes = [];
+		// loops through each quiz once and pushes it in listOfQuizzes
+		let quizzes = [];
 		firebaseRef.on('child_added', (snapshot) => {
-			console.log('added: ', snapshot.val())
 			let quiz = {
 				name: snapshot.key,
 				details: snapshot.val()
 			};
 			quizzes.push(quiz);
-			this.setState({ listOfQuizes: quizzes });
-			console.log('LIST', this.state.listOfQuizes);
+			this.setState({ listOfQuizzes: quizzes });
 		});
 	}
 
@@ -35,10 +33,10 @@ class HomePage extends React.Component {
 					</div>
 
 					<div className="trivia">
-						{ this.state.listOfQuizes.map( (quiz) => (
+						{ this.state.listOfQuizzes.map( (quiz) => (
 								<TopicBlock key={quiz.name}
-														className="trivia--game"
-														quizDetails={quiz}
+											quizDetails={quiz}
+											className="trivia--game"
 								/>
 							)) }
 					</div>

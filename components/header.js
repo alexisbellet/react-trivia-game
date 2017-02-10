@@ -3,6 +3,15 @@ import SearchForm from './search_form';
 import UserDetails from './user_details';
 
 class Header extends React.Component {
+	constructor(){
+		super();
+		// this.toggleUserDetails = this.toggleUserDetails.bind(this);
+
+		this.state = {
+			showResults: false
+		}
+	}
+	
 	render() {
 		return (
 			<div className="headerContainer">
@@ -12,12 +21,20 @@ class Header extends React.Component {
 				  		<h1>Nerdia Tech Trivia</h1>
 			  		</div>
 			  		<SearchForm />
-			  		<img className="avatar" src="../assets/min-code-on-screen.jpg" alt="User Avatar" />
+			  		<img className="avatar" src="../assets/min-code-on-screen.jpg" alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
 			  	</header>
-			  	<div className="userDetails"></div>
+			  	<UserDetails />
 			</div>
 		)
 
+	}
+
+	toggleUserDetails(){
+		const newState != this.state.showResults;
+		console.log(this.state.showResults);
+		this.setState({
+			showResults: newState
+		})
 	}
 }
 

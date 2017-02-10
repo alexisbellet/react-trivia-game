@@ -3,11 +3,11 @@
       "name":"",
       "avatar":""
    }, 
-   "quizes":{  
+   "quizzes":{  
       "JavaScript Facts and Fun": {  
          "category":"JavaScript",
          "questionList":{  
-            "question": {
+            "0": {
                "text": "Who is the inventor of JSON?",
                "answers":{  
                "correct":"Douglas Crockford",
@@ -19,7 +19,7 @@
                "source":""
                }
             },
-            "question": {
+            "1": {
                "text": "Which of the following is NOT a JavaScript framework?",
                "answers":{  
                   "correct":"Elm",
@@ -30,13 +30,25 @@
                   ],
                   "source":""
                }
+            },
+            "2": {
+               "text": "IsNaN() Evalutes And Argument To Determine if Given Value?",
+               "answers":{  
+                  "correct":"Is Not a Number",
+                  "incorrect":[  
+                     "Is Not a Null",
+                     "Is Not a New Object",
+                     "None"
+                  ],
+                  "source":""
+               }
             }
          }
       },
       "Popular Algorithms": {  
          "category":"Computer Science",
          "questionList":{  
-            "question": {
+            "0": {
                "text": "Which culture, have we found, was the first to use Algorithms?",
                "answers":{  
                   "correct":"Babylonians in 1600s BCE",

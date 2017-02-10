@@ -1,4 +1,4 @@
-{quizes: {
+{quizzes: {
 		quiz1: {
 			name: 'JavaScript Facts and Fun',
 			category: 'JavaScript',
