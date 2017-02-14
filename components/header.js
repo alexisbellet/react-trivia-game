@@ -5,7 +5,6 @@ import UserDetails from './user_details';
 class Header extends React.Component {
 	constructor(){
 		super();
-		// this.toggleUserDetails = this.toggleUserDetails.bind(this);
 
 		this.state = {
 			showResults: false
@@ -23,15 +22,14 @@ class Header extends React.Component {
 			  		<SearchForm />
 			  		<img className="avatar" src="../assets/min-code-on-screen.jpg" alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
 			  	</header>
-			  	<UserDetails />
+			  	{this.state.showResults && <UserDetails />}
 			</div>
 		)
 
 	}
 
 	toggleUserDetails(){
-		const newState != this.state.showResults;
-		console.log(this.state.showResults);
+		const newState = !this.state.showResults;
 		this.setState({
 			showResults: newState
 		})

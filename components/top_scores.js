@@ -1,8 +1,13 @@
 import React from 'react';
+import firebase from 'firebase';
 
 class TopScores extends React.Component {
 	constructor() {
 		super();
+
+		this.state= {
+			user: ''
+		}
 	}
 
 	render() {
@@ -13,6 +18,20 @@ class TopScores extends React.Component {
 				</div>
 			</div>
 		)
+	}
+
+	componentDidMount(){
+	  const firebaseRef = firebase.database().ref('user');
+	  console.log(firebaseRef);
+	  firebaseRef.on('child_added', (snapshot) => {
+	  			let quiz = {
+	  				name: snapshot.key,
+	  				details: snapshot.val()
+	  			};
+	  			quizzes.push(quiz);
+	  			this.setState({ listOfQuizzes: quizzes });
+	  		});
+	  	}
 	}
 }
 

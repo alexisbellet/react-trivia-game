@@ -77,3 +77,52 @@ header {
 	border-radius: 50%;
 	margin: 10px;
 }
+
+// //////////////////////
+// USER DETAILS
+// /////////////////////
+
+.userDetails {
+	position: absolute;
+	background: $neutral-color;
+	right: 25px;
+	top: 100px;
+	min-width: 220px;
+	min-height: 265px;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.userDetails--avatar {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	margin: 0 0 30px;
+}
+
+.sugestions {
+	margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+.suggestions li {
+	background:white;
+	list-style: none;
+	border-bottom: 1px solid #D8D8D8;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+	margin:0;
+	padding:20px;
+	transition:background 0.2s;
+	display:flex;
+	justify-content:space-between;
+	text-transform: capitalize;
+}
+
+.suggestions li span span {
+    background:#ffc600;
+}
+
+
