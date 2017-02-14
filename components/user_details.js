@@ -10,7 +10,6 @@ class UserDetails extends React.Component {
 	    currentUser: null,
 	    loggedIn: false
 	  }
-	  // this.login = this.login.bind(this);
 	}
 
 	render() {
