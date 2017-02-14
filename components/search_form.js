@@ -30,10 +30,10 @@ class SearchForm extends React.Component {
 		const matchArray = findMatches(this.quizInput.value, this.state.quizNames);
 		const html = matchArray.map(quizName => {
 		const regex = new RegExp(this.quizInput.value, 'gi');
-		quizName = quizName.replace(regex, `<span clasNames="hl">${this.quizInput.value}</span>`);
+		quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
 		return `
 			<li>
-			    <span className="name">${quizName}</span> 
+			    <span>${quizName}</span> 
 			</li>
 		`;
 	  }).join('');
