@@ -19,7 +19,7 @@ class UserDetails extends React.Component {
 		  		<img className="userDetails--avatar" src="../assets/min-code-on-screen.jpg" alt="User Avatar"/>
 
 		  		{
-		  			!this.state.loggedIn ? <Login onLogin={ (userName) => this.login(userName) }/> :  this.state.currentUser 
+		  			!this.state.loggedIn ? <Login onLogin={ (userName) => this.login(userName) }/> :  <div><p> hi, {this.state.currentUser  } </p><button onClick={(evt) => { firebase.auth().signOut() }}>Logout</button></div>
 		  		}
 
 		  	</div>
@@ -28,6 +28,16 @@ class UserDetails extends React.Component {
 
 	login(userName) {
 	  this.setState({ loggedIn: true, currentUser: userName });
+	}
+
+	componentDidMount(){
+	  firebase.auth().onAuthStateChanged(user => {
+	    if (user) {
+	      this.login(user.displayName);
+	    } else {
+	      this.setState({loggedIn: false})
+	    }
+	  })
 	}
 }
 

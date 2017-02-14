@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import SignUp from './sign_up';
 
 class Login extends React.Component {
 	constructor() {
@@ -29,7 +30,7 @@ class Login extends React.Component {
 		    <a href='#' onClick={ (evt) => this.setState({ mode: 'signup '})}>Don't have an account? Sign up!</a>
 		  </div>
 		} else {
-	    // return <SignUp onLogin={ this.props.onLogin } />
+	    return <SignUp onLogin={ this.props.onLogin } />
 		}
 	}
 
