@@ -7,35 +7,45 @@ import TopScores from '../components/top_scores';
 
 
 class TopicPage extends React.Component {
-	constructor(props) {
-		super(props);
-		// takes the url, replaces the _ with white spaces and stores the result in this.state.quizName
-		this.state = { quizName : (this.props.params.topic).replace(/-/g, " ") }
+	constructor() {
+		super();
+		this.state = {
+			quizName: '',
+			category: '',
+			questions: []
+		}
+	}
 
-		// thanks to the url, retrieves the data from the database directly
-		const firebaseRef = firebase.database().ref("/quizzes/" + this.state.quizName);
+	componentDidMount() {
+		let quizName = (this.props.params.topic).replace(/-/g, " ");
+		const firebaseRef = firebase.database().ref("/quizzes/" + quizName);
+
 		firebaseRef.once('value', (snapshot) => {
-			console.log(snapshot.val());
-		})
+			console.log('topicPage snapshot', snapshot.val());
+			let category = snapshot.val().category;
+			let questions = [];
 
-		// to be modified in order to store the category & topic from url
-		// const category = this.props.category;
-		// const topic = this.props.topic;
+			for (let i = 0; i < snapshot.val().questionList.length; i++) {
+				questions.push(snapshot.val().questionList[i]);
+			}
+
+			this.setState({ 
+				quizName: quizName, 
+				category: category, 
+				questions: questions });
+		});
 	}
 
 	render() {
 		return (
 			<div className="row">
-				{ this.state.quizName }
+				{ (this.props.params.topic).replace(/-/g, " ") }
 				<TopScores className="top-scores col-xs-6 col-sm-6 col-md-6 col-lg-6" />
-				<Quiz className="quiz-container col-xs-6 col-sm-6 col-md-6 col-lg-6" />
+				<Quiz className="quiz-container col-xs-6 col-sm-6 col-md-6 col-lg-6" questions={ this.state.questions }/>
 			</div>
 		)
 	}
 }
-
-
-
 
 
 export default TopicPage;
