@@ -27,8 +27,8 @@ class TopicPage extends React.Component {
 		return (
 			<div className="row">
 				{ this.state.quizName }
-				<TopScores className="top-scores col-xs-6 col-sm-6 col-md-6 col-lg-6" />
-				<Quiz className="quiz-container col-xs-6 col-sm-6 col-md-6 col-lg-6" />
+				<TopScores />
+				<Quiz />
 			</div>
 		)
 	}

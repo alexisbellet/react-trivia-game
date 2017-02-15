@@ -32,7 +32,8 @@ class UserDetails extends React.Component {
 	componentDidMount(){
 	  firebase.auth().onAuthStateChanged(user => {
 	    if (user) {
-	      this.login(user.displayName);
+	      this.login(user.displayName, user.photoUrl);
+	      console.log(user.photoUrl)
 	    } else {
 	      this.setState({loggedIn: false})
 	    }

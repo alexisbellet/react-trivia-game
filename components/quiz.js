@@ -7,11 +7,11 @@ class Quiz extends React.Component {
 
 	render() {
 		return (
-			<div className="row">
-				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+				<div>
 					<h2>This is the quiz part</h2>
 				</div>
-			</div>
+			</main>
 		)
 	}
 }

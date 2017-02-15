@@ -6,32 +6,28 @@ class TopScores extends React.Component {
 		super();
 
 		this.state= {
+			quizNames: '',
 			user: ''
 		}
 	}
 
 	render() {
 		return (
-			<div className="row">
-				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<h2>This is the top-score part</h2>
+			<aside className="top-scores col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<div>
+					<img src="" alt="User Avatar" className="userAvatar"/>
+					<p className="display">{this.user}</p>
 				</div>
-			</div>
+			</aside>
 		)
 	}
 
 	componentDidMount(){
-	  const firebaseRef = firebase.database().ref('user');
-	  console.log(firebaseRef);
-	  // firebaseRef.on('child_added', (snapshot) => {
-	  // 			let quiz = {
-	  // 				name: snapshot.key,
-	  // 				details: snapshot.val()
-	  // 			};
-	  // 			quizzes.push(quiz);
-	  // 			this.setState({ listOfQuizzes: quizzes });
-	  // 		});
-	  	// }
+		const firebaseRef = firebase.database().ref('/user/');
+		firebaseRef.once('value', (snapshot) => {
+			this.setState({user: Object.keys(snapshot.val() )});
+			console.log(snapshot.val());
+		})
 	}
 }
 

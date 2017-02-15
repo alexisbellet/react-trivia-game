@@ -42,7 +42,7 @@ class SearchForm extends React.Component {
 
 	goToQuiz(evt){
 		evt.preventDefault();
-		console.log(this.quizInput.value );
+		console.log(this.quizInput.value);
 	}
 
 	render() {
@@ -50,7 +50,7 @@ class SearchForm extends React.Component {
 			<div>
 		  		<form onSubmit={ this.goToQuiz.bind(this) }>
 		  			<input type="search" ref={ (input) => {this.quizInput = input} } onChange={this.displayMatches}/>
-		  			<input type="submit" value="Submit"/>
+		  			{/*<input type="submit" value="Submit"/>*/}
 		  		</form>
 		  		<ul className="suggestions"></ul>
 	  		</div>

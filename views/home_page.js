@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-
+import SearchForm from '../components/search_form';
 import TopicBlock from '../components/topic_block';
 
 class HomePage extends React.Component {
@@ -31,6 +31,8 @@ class HomePage extends React.Component {
 					<div className="poster">
 						<h2 className="poster--title">Welcome to Nerdia Tech Trivia</h2>
 					</div>
+
+					<SearchForm />
 
 					<div className="trivia">
 						{ this.state.listOfQuizzes.map( (quiz) => (
