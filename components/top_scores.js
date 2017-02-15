@@ -22,6 +22,7 @@ class TopScores extends React.Component {
 
 	componentDidMount(){
 	  const firebaseRef = firebase.database().ref('user');
+<<<<<<< Updated upstream
 	  console.log(firebaseRef);
 	  // firebaseRef.on('child_added', (snapshot) => {
 	  // 			let quiz = {
@@ -32,6 +33,17 @@ class TopScores extends React.Component {
 	  // 			this.setState({ listOfQuizzes: quizzes });
 	  // 		});
 	  	// }
+=======
+		// firebaseRef.on('child_added', (snapshot) => {
+		// 			let quiz = {
+		// 				name: snapshot.key,
+		// 				details: snapshot.val()
+		// 			};
+		// 			quizzes.push(quiz);
+		// 			this.setState({ listOfQuizzes: quizzes });
+		// 		});
+		// 	}
+>>>>>>> Stashed changes
 	}
 }
 
