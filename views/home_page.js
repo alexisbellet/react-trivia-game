@@ -27,7 +27,7 @@ class HomePage extends React.Component {
 	render() {
 		return (
 			<div>
-		  	<main>
+			  	<main>
 					<div className="poster">
 						<h2 className="poster--title">Welcome to Nerdia Tech Trivia</h2>
 					</div>
@@ -40,10 +40,7 @@ class HomePage extends React.Component {
 								/>
 							)) }
 					</div>
-					
 				</main>
-
-
 			</div>
 		)
 	}
