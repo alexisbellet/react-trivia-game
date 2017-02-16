@@ -4,7 +4,9 @@ class Quiz extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentQuestion: 0
+			currentQuestion: 0,
+			initialTimer: Date.now(),
+			timePerQuestion: {}
 		}
 	}
 
@@ -55,18 +57,25 @@ class Quiz extends React.Component {
 			answers[randomIndex] = temporaryValue;
 		}
 
-		console.log(answers);
-
 		return answers;
 	}
 
 	checkCorrectness(answer, index) {
 		let correctAnswer = this.props.questions[index].answers.correct;
 		if (answer === correctAnswer) {
-			console.log('yay!');
-			this.setState({currentQuestion: (this.state.currentQuestion + 1)})
+			// create an object with a key/value pair - currentQuestion/time to answer
+			let timePerQuestion = this.state.timePerQuestion;
+			timePerQuestion[this.state.currentQuestion] = (Date.now() - this.state.initialTimer);
+			console.log('timePerQuestion after correct answer', timePerQuestion);
+
+			// update states
+			this.setState({
+				currentQuestion: (this.state.currentQuestion + 1),
+				initialTimer: Date.now(),
+				timePerQuestion: timePerQuestion
+			});
 		} else {
-			console.log('boooo');
+			console.log('wrong answer boooo');
 		}
 	}
 

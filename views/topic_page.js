@@ -21,7 +21,6 @@ class TopicPage extends React.Component {
 		const firebaseRef = firebase.database().ref("/quizzes/" + quizName);
 
 		firebaseRef.once('value', (snapshot) => {
-			console.log('topicPage snapshot', snapshot.val());
 			let category = snapshot.val().category;
 			let questions = [];
 
