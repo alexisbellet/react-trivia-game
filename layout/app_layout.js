@@ -12,7 +12,7 @@ class AppLayout extends React.Component {
 	// we could potentially add a footer component if we want
 	render() {
 		return (
-			<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div className="row">
 				<Header />
 				{ this.props.children }
 			</div>

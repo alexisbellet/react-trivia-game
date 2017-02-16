@@ -10,26 +10,23 @@ class Quiz extends React.Component {
 
 	render() {
 		return (
-			<div className="row">
-				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					{ this.props.questions.map( (question, index) => (
-							<div key={index}
-									 className={ (index === this.state.currentQuestion) ? "active" : "hide" }>
-								
-								{ question.text }
+			<div className="quiz-container col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				{ this.props.questions.map( (question, index) => (
+				<div key={index}
+							className={ (index === this.state.currentQuestion) ? "active" : "hide" }>
+							
+					<h3>{ question.text }</h3>
 
-								{ this.shuffledQuestion(index).map( (answer, index) => (
-										<button key={index} 
-														value={answer} 
-														className="btn" 
-														onClick={ (evt) => this.checkCorrectness(evt.target.value, this.state.currentQuestion) } >
-											{ answer }
-										</button>
-									) ) }
-
-							</div>
+					{ this.shuffledQuestion(index).map( (answer, index) => (
+						<button key={index} 
+										value={answer} 
+										className="btn answer-btn" 
+										onClick={ (evt) => this.checkCorrectness(evt.target.value, this.state.currentQuestion) } >
+							{ answer }
+						</button>
 					) ) }
 				</div>
+				) ) }
 			</div>
 		)
 	}
@@ -37,7 +34,7 @@ class Quiz extends React.Component {
 	shuffledQuestion(index) {
 		// putting all the answers together in order to shuffle them
 		let answers = [];
-		answers.push(this.props.questions[index].answers.incorrect);
+		this.props.questions[index].answers.incorrect.map((incorrectAnswer) => answers.push(incorrectAnswer));
 		answers.push(this.props.questions[index].answers.correct);
 
 		// shuffle method
@@ -57,6 +54,8 @@ class Quiz extends React.Component {
 			answers[currentIndex] = answers[randomIndex];
 			answers[randomIndex] = temporaryValue;
 		}
+
+		console.log(answers);
 
 		return answers;
 	}

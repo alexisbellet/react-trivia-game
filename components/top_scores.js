@@ -12,10 +12,8 @@ class TopScores extends React.Component {
 
 	render() {
 		return (
-			<div className="row">
-				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div className="top-score-container col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<h2>This is the top-score part</h2>
-				</div>
 			</div>
 		)
 	}
