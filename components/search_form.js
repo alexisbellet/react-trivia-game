@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Link } from 'react-router';
 
 class SearchForm extends React.Component {
 	constructor(props) {
@@ -21,23 +22,25 @@ class SearchForm extends React.Component {
 		  return quizNames.filter(quizName => {
 		  	console.log(quizName);
 		    const rgex = new RegExp(wordToMatch, 'gi');
-		    console.log(rgex);
 		    return quizName.match(rgex);
 		  });
 		}
 
-		const suggestions = document.querySelector('.suggestions');
+		const suggestions = document.querySelector('.trivia');
 		const matchArray = findMatches(this.quizInput.value, this.state.quizNames);
+
 		const html = matchArray.map(quizName => {
-		const regex = new RegExp(this.quizInput.value, 'gi');
-		quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
-		return `
-			<li>
-			    <span>${quizName}</span> 
-			</li>
-		`;
-	  }).join('');
-	  suggestions.innerHTML = html;
+			const regex = new RegExp(this.quizInput.value, 'gi');
+			// quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
+		    console.log(quizName);
+			return (
+				<div>
+					<Link className="trivia--game" to={ "topic/" + quizName.replace(/ /g, "-") }>{quizName}</Link>
+				</div>
+			);
+		 }).join('');
+		console.log(suggestions)
+	    suggestions.innerHTML = html;
 	};
 
 	goToQuiz(evt){
