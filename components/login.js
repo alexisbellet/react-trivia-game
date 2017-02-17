@@ -10,6 +10,7 @@ class Login extends React.Component {
 	      mode: 'login',
 	      email: '',
 	      password: '',
+	      photoURL: '',
 	      error: null
 	    }
 	    this.setUser = this.setUser.bind(this);
@@ -41,7 +42,7 @@ class Login extends React.Component {
 		}
 
 		setUser(userName) {
-		this.setState({userName: userName});
+		this.setState({userName: userName, photoURL: user.photoURL});
 	}
 }
 

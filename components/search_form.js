@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Link } from 'react-router';
 
 class SearchForm extends React.Component {
 	constructor(props) {
@@ -21,28 +22,31 @@ class SearchForm extends React.Component {
 		  return quizNames.filter(quizName => {
 		  	console.log(quizName);
 		    const rgex = new RegExp(wordToMatch, 'gi');
-		    console.log(rgex);
 		    return quizName.match(rgex);
 		  });
 		}
 
-		const suggestions = document.querySelector('.suggestions');
+		const suggestions = document.querySelector('.trivia');
 		const matchArray = findMatches(this.quizInput.value, this.state.quizNames);
-		const html = matchArray.map(quizName => {
-		const regex = new RegExp(this.quizInput.value, 'gi');
-		quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
-		return `
-			<li>
-			    <span>${quizName}</span> 
-			</li>
-		`;
-	  }).join('');
-	  suggestions.innerHTML = html;
+
+		// const html = matchArray.map(quizName => {
+		// 	console.log(this)
+		// 	const regex = new RegExp(this.quizInput.value, 'gi');
+		// 	// quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
+		//     console.log(quizName);
+		// 	const  (
+		// 		<div>
+		// 			<Link className="trivia--game" to={ "topic/" + this.quizName.replace(/ /g, "-") }>{this.quizName}</Link>
+		// 		</div>
+		// 	);
+		//  }).join('');
+		// console.log(suggestions);
+	    suggestions.innerHTML = html;
 	};
 
 	goToQuiz(evt){
 		evt.preventDefault();
-		console.log(this.quizInput.value );
+		console.log(this.quizInput.value);
 	}
 
 	render() {
@@ -50,7 +54,7 @@ class SearchForm extends React.Component {
 			<div>
 		  		<form onSubmit={ this.goToQuiz.bind(this) }>
 		  			<input type="search" ref={ (input) => {this.quizInput = input} } onChange={this.displayMatches}/>
-		  			<input type="submit" value="Submit"/>
+		  			{/*<input type="submit" value="Submit"/>*/}
 		  		</form>
 		  		<ul className="suggestions"></ul>
 	  		</div>

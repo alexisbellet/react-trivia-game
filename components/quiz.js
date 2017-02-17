@@ -12,7 +12,8 @@ class Quiz extends React.Component {
 
 	render() {
 		return (
-			<div className="quiz-container col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
 				{ this.props.questions.map( (question, index) => (
 				<div key={index}
 							className={ (index === this.state.currentQuestion) ? "active" : "hide" }>
@@ -29,7 +30,8 @@ class Quiz extends React.Component {
 					) ) }
 				</div>
 				) ) }
-			</div>
+			</main>
+
 		)
 	}
 
