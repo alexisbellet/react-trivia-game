@@ -29,17 +29,18 @@ class SearchForm extends React.Component {
 		const suggestions = document.querySelector('.trivia');
 		const matchArray = findMatches(this.quizInput.value, this.state.quizNames);
 
-		const html = matchArray.map(quizName => {
-			const regex = new RegExp(this.quizInput.value, 'gi');
-			// quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
-		    console.log(quizName);
-			return (
-				<div>
-					<Link className="trivia--game" to={ "topic/" + quizName.replace(/ /g, "-") }>{quizName}</Link>
-				</div>
-			);
-		 }).join('');
-		console.log(suggestions)
+		// const html = matchArray.map(quizName => {
+		// 	console.log(this)
+		// 	const regex = new RegExp(this.quizInput.value, 'gi');
+		// 	// quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
+		//     console.log(quizName);
+		// 	const  (
+		// 		<div>
+		// 			<Link className="trivia--game" to={ "topic/" + this.quizName.replace(/ /g, "-") }>{this.quizName}</Link>
+		// 		</div>
+		// 	);
+		//  }).join('');
+		// console.log(suggestions);
 	    suggestions.innerHTML = html;
 	};
 
