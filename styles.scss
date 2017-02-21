@@ -8,6 +8,8 @@ $neutral-color: #ddd;
 $secondary-color: #1D517F;
 $dark-color: #1B202A;
 
+
+
 // //////////////////////
 // GENERAL CODE
 // /////////////////////
@@ -166,4 +168,27 @@ header {
 .answer-btn {
 	width: 40%;
 	margin: 5%;
+}
+
+// //////////////////////
+// HIGH SCORES
+// /////////////////////
+
+.highScore--User {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.scoreProgress { 
+	border: 1px solid black;
+    width: 150px;
+    height: 15px;
+}
+
+.scoreProgress--filled {
+	background: #F6D5E0;
+	height: 100%;
+	width: 50%;
 }
