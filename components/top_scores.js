@@ -13,7 +13,7 @@ class TopScores extends React.Component {
 
 	render() {
 		return (
-			<div className="top-scores col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<div>
 				<p className="highScore--list  highScore--list__currentUser">You:</p>
 				<div>
 					<img src="" alt="User Avatar" className="userAvatar"/>

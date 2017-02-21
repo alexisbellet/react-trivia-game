@@ -27,8 +27,7 @@ class LogInPage extends React.Component {
 			// Link to sign-up page keeps topic in the url so 
 			// user can be redirected to where he/she wanted to go at first
 			return (
-				<div className="splash">
-			    { this.state.error && <div>{ this.state.error }</div> }
+				<div className="log-in-container splash">
 			    <input type='text'
 			           placeholder="Type in your email"
 			           onChange={ (evt) => this.setState({ email: evt.target.value}) }/>
@@ -36,8 +35,8 @@ class LogInPage extends React.Component {
 			           placeholder="Password"
 			           onChange={ (evt) => this.setState({ password: evt.target.value }) }/>
 			    <button onClick={ (evt) => this.loginAttempt() }>Login</button>
-
 			    <Link to={ "/sign-up/" + (this.props.params.topic) }>Don't have an account? Sign up!</Link>
+			    { this.state.error && <div className="error-message">Hey! It looks like: { this.state.error }</div> }
 			  </div>
 			)
 		} else {
