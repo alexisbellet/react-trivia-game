@@ -6,7 +6,7 @@ class TopicBlock extends React.Component {
 		return (
 			<div>
 				<Link className="trivia--game" 
-							to={ this.props.userLoggedIn ? 
+							to={ this.props.isUserLoggedIn ? 
 									("topic/" + (this.props.quizDetails.name).replace(/ /g, "-")) : 
 									("log-in/" + (this.props.quizDetails.name).replace(/ /g, "-")) }>{ this.props.quizDetails.name }</Link>
 			</div>
