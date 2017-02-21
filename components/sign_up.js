@@ -3,7 +3,7 @@ import firebase from 'firebase';
 
 class SignUp extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       userName: '',
       email: '',

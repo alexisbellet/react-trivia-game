@@ -9,12 +9,21 @@ class HomePage extends React.Component {
 		this.state = { 
 			listOfQuizzes: [], 
 			filterText: '',
-			matchingTheSearch: false 
+			matchingTheSearch: false,
+			userLoggedIn: false,
+			currentUser: ''
 		};
 		this.handleUserInput = this.handleUserInput.bind(this);
+		this.populateQuizArray = this.populateQuizArray.bind(this);
 	}
 
 	componentDidMount() {
+		this.populateQuizArray();
+		this.checkUserLogIn();
+	}
+
+	// function fetching data from firebase to display available quizes
+	populateQuizArray() {
 		const firebaseRef = firebase.database().ref('quizzes');
 
 		// loops through each quiz once and pushes it in listOfQuizzes
@@ -29,6 +38,18 @@ class HomePage extends React.Component {
 		});
 	}
 
+	// function linked to loggedIn state
+	checkUserLogIn() {
+		firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ userLoggedIn: true });
+      } else {
+        this.setState({ userLoggedIn: false });
+      }
+    });
+	}
+
+	// function linked to Search Form
 	findMatches(wordToMatch, quizzes){
 	  return quizzes.filter(quiz => {	
 	    const rgex = new RegExp(wordToMatch, 'gi');
@@ -36,6 +57,7 @@ class HomePage extends React.Component {
 	  });
 	} 
 
+	// function linked to Search Form
 	handleUserInput(filterText, matchingTheSearch) {
 	    this.setState({
 	      filterText: filterText,
@@ -56,11 +78,16 @@ class HomePage extends React.Component {
 						matchingTheSearch={this.state.matchingTheSearch}
 						onUserInput={this.handleUserInput} />
 
+					<h3 className="welcome-message">
+						Welcome to Nerdia { this.state.userLoggedIn ? "Guest" : this.state.currentUser }
+					</h3>
+
 					<div className="trivia">
 						{ this.state.listOfQuizzes.map( (quiz) => (
 								<TopicBlock key={quiz.name}
 											quizDetails={quiz}
 											className="trivia--game"
+											isUserLoggedIn={ this.state.userLoggedIn }
 								/>
 							)) }
 					</div>

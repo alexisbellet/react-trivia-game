@@ -6,6 +6,8 @@ import AppLayout from './layout/app_layout';
 
 import HomePage from './views/home_page';
 import TopicPage from './views/topic_page';
+import LogInPage from './views/login_page';
+import SignUpPage from './views/signup_page';
 
 require("file?name=[name].[ext]!./index.html");
 require("./styles.scss");
@@ -33,6 +35,8 @@ ReactDOM.render((
 		<Route path="/" component={AppLayout}>
 			<IndexRoute component={HomePage}/>
 			<Route path="topic/:topic" component={TopicPage}/>
+			<Route path="sign-up/:topic" component={SignUpPage} />
+			<Route path="log-in/:topic" component={LogInPage} />
 			<Route path="*" component={HomePage}/>
 		</Route>
 	</Router>
