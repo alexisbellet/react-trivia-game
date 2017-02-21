@@ -4,59 +4,42 @@ import { Link } from 'react-router';
 
 class SearchForm extends React.Component {
 	constructor(props) {
-		super();
-		this.state = {quizNames: []}
-		this.displayMatches = this.displayMatches.bind(this);
+		super(props);
+		// this.state = {
+		// 	quizNames: []
+		// }
+		this.handleChangeMatches = this.handleChangeMatches.bind(this);
 	}
 
 	componentDidMount(){
 		const firebaseRef = firebase.database().ref("/quizzes/");
 		firebaseRef.once('value', (snapshot) => {
-			this.setState({quizNames: Object.keys(snapshot.val() )});
+			// this.setState({quizNames: Object.keys(snapshot.val() )});
 		})
 	}
 
-	displayMatches(){
+	handleChangeMatches(){
+		this.props.onUserInput(this.filterTextInput.value);
+		const matchArray = findMatches(this.filterTextInput.value, this.props);
+		console.log(matchArray);
 
-		function findMatches(wordToMatch, quizNames){
-		  return quizNames.filter(quizName => {
-		  	console.log(quizName);
-		    const rgex = new RegExp(wordToMatch, 'gi');
-		    return quizName.match(rgex);
-		  });
-		}
-
-		const suggestions = document.querySelector('.trivia');
-		const matchArray = findMatches(this.quizInput.value, this.state.quizNames);
-
-		// const html = matchArray.map(quizName => {
-		// 	console.log(this)
-		// 	const regex = new RegExp(this.quizInput.value, 'gi');
-		// 	// quizName = quizName.replace(regex, `<span className="hl">${this.quizInput.value}</span>`);
-		//     console.log(quizName);
-		// 	const  (
-		// 		<div>
-		// 			<Link className="trivia--game" to={ "topic/" + this.quizName.replace(/ /g, "-") }>{this.quizName}</Link>
-		// 		</div>
-		// 	);
-		//  }).join('');
-		// console.log(suggestions);
-	    suggestions.innerHTML = html;
-	};
-
-	goToQuiz(evt){
-		evt.preventDefault();
-		console.log(this.quizInput.value);
+		function findMatches(wordToMatch, quizzes){
+			console.log(wordToMatch, quizzes);
+		  // return quizzes.filter(quiz => {
+		  //   const rgex = new RegExp(wordToMatch, 'gi');
+		  //   return quiz.match(rgex);
+		  // });
+		} 
 	}
 
 	render() {
 		return (
-			<div>
-		  		<form onSubmit={ this.goToQuiz.bind(this) }>
-		  			<input type="search" ref={ (input) => {this.quizInput = input} } onChange={this.displayMatches}/>
-		  			{/*<input type="submit" value="Submit"/>*/}
-		  		</form>
-		  		<ul className="suggestions"></ul>
+			<div className="search-wrapper">
+				<input type="search" 
+					   value={this.props.filterText} 
+					   ref={(input) => this.filterTextInput = input}
+					   onChange={this.handleChangeMatches} 
+					   placeholder="Search Quizzes"/>
 	  		</div>
 		)
 	}
