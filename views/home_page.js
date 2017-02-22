@@ -10,6 +10,7 @@ class HomePage extends React.Component {
 			listOfQuizzes: [], 
 			filterText: '',
 			matchingTheSearch: false,
+			listOfMatchedQuizzes: [],
 			currentUser: ''
 		};
 		this.handleUserInput = this.handleUserInput.bind(this);
@@ -21,7 +22,7 @@ class HomePage extends React.Component {
 		this.populateQuizArray();
 	}
 
-	// function fetching data from firebase to display available quizes
+	// function fetching data from firebase to display available quizzes
 	populateQuizArray() {
 		const firebaseRef = firebase.database().ref('quizzes');
 
@@ -34,7 +35,6 @@ class HomePage extends React.Component {
 			};
 			quizzes.push(quiz);
 			this.setState({ listOfQuizzes: quizzes });
-			console.log(this.state.listOfQuizzes)
 		});
 	}
 
@@ -44,14 +44,11 @@ class HomePage extends React.Component {
 	      filterText: filterText,
 	      matchingTheSearch: this.state.matchingTheSearch
 	    });
-	    // console.log('----inside handle---');
-	    // console.log({
-	    // 	list: this.state.listOfQuizzes,
-	    // 	filter: this.state.filterText
-	    // })
+
 	    const matchArray = this.findMatches(filterText, this.state.listOfQuizzes);
-	    console.log('matcharray length' + matchArray.length);
-	    console.log(this.state.listOfQuizzes.length)
+	    // console.table([matchArray]);
+	    // console.log('list o quizzes length ' +this.state.listOfQuizzes.length)
+    	this.setState({matchingTheSearch: true, listOfMatchedQuizzes: [...matchArray]});
 
 	    // if nothing is typed show everything
 	    // if something is typed && there are matches display only those
@@ -59,24 +56,22 @@ class HomePage extends React.Component {
 
 	    if (matchArray.length >= 1) {
 	    	console.log('a match exists');
-	    	// this.props.matchingTheSearch = true;	
+
 	    } else if (matchArray.length === this.state.listOfQuizzes.length) {
 	    	console.log('display all quizzes')
-	    	// this.props.matchingTheSearch = false;
-	    }
+	    	this.setState({matchingTheSearch: false});
+
+	    } else if (matchArray.length === 0 ) {
+			console.log('there is no match');
+			this.setState({matchingTheSearch: false});
+	    }	
 	}
 
 	findMatches(wordToMatch, quizzes){
-	    // console.log({
-	    // 	wordToMatch: wordToMatch,
-	    // 	quizzes: quizzes
-	    // })
-
 		return quizzes.filter(quiz => {
 			const rgex = new RegExp(wordToMatch, 'gi');
-			console.log({quiz: quiz.name});
+			// console.log({quiz: quiz.name});
 			return quiz.name.match(rgex);
-
 		});
 	} 
 
@@ -98,7 +93,9 @@ class HomePage extends React.Component {
 					</h3>
 
 					<div className="trivia">
-						{ this.state.listOfQuizzes.map( (quiz) => (
+						{ /* matchingTheSearch == true ? console.log('true') : console.log(false)*/}
+
+						{	this.state.listOfQuizzes.map( (quiz) => (
 								<TopicBlock key={quiz.name}
 											quizDetails={quiz}
 											isUserLoggedIn={ this.props.isUserLoggedIn }

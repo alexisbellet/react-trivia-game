@@ -53,7 +53,7 @@ class TopScores extends React.Component {
 		const firebaseRef = firebase.database().ref('/user/');
 		firebaseRef.once('value', (snapshot) => {
 			this.setState({user: Object.keys(snapshot.val() )});
-			console.log(snapshot.val());
+			// console.log(snapshot.val());
 		})
 	}
 }
