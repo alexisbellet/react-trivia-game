@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 class Header extends React.Component {
 	constructor(){
 		super();
-
 		this.state = {
 			showResults: false
 		}
@@ -24,7 +23,7 @@ class Header extends React.Component {
 			  		
 			  		<img className="avatar" src="../assets/min-code-on-screen.jpg" alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
 			  	</header>
-			  	{this.state.showResults && <UserDetails />}
+			  	{this.state.showResults && <UserDetails avatar={ this.props.photoURL } />}
 			</div>
 		)
 
