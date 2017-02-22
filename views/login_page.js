@@ -41,9 +41,14 @@ class LogInPage extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		// if doesnt exist, push just to slash
 		if (nextProps.isUserLoggedIn) {
-			browserHistory.push('/topic' + (this.props.params.topic));
-		}
+			if (!this.props.params.topic) {
+				browserHistory.push('/');
+			} else {
+				browserHistory.push('/topic' + (this.props.params.topic));
+			}
+		} 
 	}
 }
 

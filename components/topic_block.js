@@ -4,11 +4,12 @@ import { Link } from 'react-router';
 class TopicBlock extends React.Component {
 	render() {
 		return (
-			<div>
-				<Link className="trivia--game" 
-							to={ this.props.isUserLoggedIn ? 
-									("topic/" + (this.props.quizDetails.name).replace(/ /g, "-")) : 
-									("log-in/" + (this.props.quizDetails.name).replace(/ /g, "-")) }>{ this.props.quizDetails.name }</Link>
+			<div className="trivia--game">
+				<div className="categoryTitle">{this.props.quizDetails.details.category}</div>
+				<Link to={ this.props.isUserLoggedIn ? 
+						("topic/" + (this.props.quizDetails.name).replace(/ /g, "-")) : 
+						("log-in/" + (this.props.quizDetails.name).replace(/ /g, "-")) }>{ this.props.quizDetails.name }</Link>
+
 			</div>
 		)
 	}

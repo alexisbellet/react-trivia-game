@@ -15,7 +15,7 @@ class UserDetails extends React.Component {
 	render() {
 		return (
 		  	<div className="userDetails">
-		  		<img className="userDetails--avatar" src="../assets/min-code-on-screen.jpg" alt="User Avatar"/>
+		  		<img className="userDetails--avatar" src={this.props.avatar} alt="User Avatar"/>
 
 		  		{
 		  			!this.state.loggedIn ? <Login onLogin={ (userName) => this.login(userName) }/> :  <div><p> hi, {this.state.currentUser  } </p><button onClick={(evt) => { firebase.auth().signOut() }}>Logout</button></div>
@@ -33,7 +33,7 @@ class UserDetails extends React.Component {
 	  firebase.auth().onAuthStateChanged(user => {
 	    if (user) {
 	      this.login(user.displayName, user.photoUrl);
-	      console.log(user.photoUrl)
+	      console.log('the users photo url is ' + user.photoUrl)
 	    } else {
 	      this.setState({loggedIn: false})
 	    }

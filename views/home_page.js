@@ -34,16 +34,9 @@ class HomePage extends React.Component {
 			};
 			quizzes.push(quiz);
 			this.setState({ listOfQuizzes: quizzes });
+			console.log(this.state.listOfQuizzes)
 		});
 	}
-
-	// function linked to Search Form
-	findMatches(wordToMatch, quizzes){
-	  return quizzes.filter(quiz => {	
-	    const rgex = new RegExp(wordToMatch, 'gi');
-	    return quiz.match(rgex);
-	  });
-	} 
 
 	// function linked to Search Form
 	handleUserInput(filterText, matchingTheSearch) {
@@ -51,7 +44,41 @@ class HomePage extends React.Component {
 	      filterText: filterText,
 	      matchingTheSearch: this.state.matchingTheSearch
 	    });
+	    // console.log('----inside handle---');
+	    // console.log({
+	    // 	list: this.state.listOfQuizzes,
+	    // 	filter: this.state.filterText
+	    // })
+	    const matchArray = this.findMatches(filterText, this.state.listOfQuizzes);
+	    console.log('matcharray length' + matchArray.length);
+	    console.log(this.state.listOfQuizzes.length)
+
+	    // if nothing is typed show everything
+	    // if something is typed && there are matches display only those
+	    // if there are no matches ask user to refine their search
+
+	    if (matchArray.length >= 1) {
+	    	console.log('a match exists');
+	    	// this.props.matchingTheSearch = true;	
+	    } else if (matchArray.length === this.state.listOfQuizzes.length) {
+	    	console.log('display all quizzes')
+	    	// this.props.matchingTheSearch = false;
+	    }
 	}
+
+	findMatches(wordToMatch, quizzes){
+	    // console.log({
+	    // 	wordToMatch: wordToMatch,
+	    // 	quizzes: quizzes
+	    // })
+
+		return quizzes.filter(quiz => {
+			const rgex = new RegExp(wordToMatch, 'gi');
+			console.log({quiz: quiz.name});
+			return quiz.name.match(rgex);
+
+		});
+	} 
 
 	render() {
 		return (
@@ -74,7 +101,6 @@ class HomePage extends React.Component {
 						{ this.state.listOfQuizzes.map( (quiz) => (
 								<TopicBlock key={quiz.name}
 											quizDetails={quiz}
-											className="trivia--game"
 											isUserLoggedIn={ this.props.isUserLoggedIn }
 								/>
 							)) }

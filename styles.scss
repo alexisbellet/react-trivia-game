@@ -92,7 +92,14 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
+}
 
+.categoryTitle {
+	position: absolute;
+    top: 0;
+    left: 5px;
+    text-transform: uppercase;
 }
 
 .avatar {

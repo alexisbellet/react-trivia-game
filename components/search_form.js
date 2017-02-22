@@ -11,25 +11,28 @@ class SearchForm extends React.Component {
 		this.handleChangeMatches = this.handleChangeMatches.bind(this);
 	}
 
-	componentDidMount(){
-		const firebaseRef = firebase.database().ref("/quizzes/");
-		firebaseRef.once('value', (snapshot) => {
-			// this.setState({quizNames: Object.keys(snapshot.val() )});
-		})
-	}
+	// componentDidMount(){
+	// 	const firebaseRef = firebase.database().ref("/quizzes/");
+	// 	firebaseRef.once('value', (snapshot) => {
+	// 		this.setState({quizNames: Object.keys(snapshot.val() )});
+	// 	})
+	// }
 
 	handleChangeMatches(){
 		this.props.onUserInput(this.filterTextInput.value);
-		const matchArray = findMatches(this.filterTextInput.value, this.props);
-		console.log(matchArray);
+		// const matchArray = findMatches(this.filterTextInput.value, this.state.quizNames);
+		// // console.log(this.filterTextInput.value, this.state.quizNames);
 
-		function findMatches(wordToMatch, quizzes){
-			console.log(wordToMatch, quizzes);
-		  // return quizzes.filter(quiz => {
-		  //   const rgex = new RegExp(wordToMatch, 'gi');
-		  //   return quiz.match(rgex);
-		  // });
-		} 
+		// function findMatches(wordToMatch, quizzes){
+		// 	// console.log(wordToMatch, quizzes);
+		// 	  return quizzes.filter(quiz => {
+		// 	    const rgex = new RegExp(wordToMatch, 'gi');
+		// 	    return quiz.match(rgex);
+		// 	  });
+		// } 
+		// console.log(matchArray);
+		// console.log(this.props);
+
 	}
 
 	render() {
