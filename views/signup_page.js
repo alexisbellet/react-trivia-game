@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import ReactRedirect from 'react-redirect';
+import {Link} from 'react-router';
 
 class SignUpPage extends React.Component {
 	constructor() {
@@ -26,42 +26,38 @@ class SignUpPage extends React.Component {
 	}
 
 	render() {
-		if (!this.state.signupSuccess) {
-	    return (
-	      <div className="sign-up-container splash">
-	          <h3>Sign up now for Nerdia!</h3>
-	          <input required
-	          			 type='text'
-	                 placeholder="Your Name"
-	                 onChange={ (evt) => this.setState({ userName: evt.target.value }) }/>
-	          <input required
-	          			 type='text'
-	                 placeholder="Email"
-	                 onChange={ (evt) => this.setState({ email: evt.target.value }) }/>
-	          <input required
-	          			 type='password'
-	                 placeholder="Password"
-	                 onChange={ (evt) => this.setState({ password: evt.target.value }) }/>
-	          <div className="avatar-list">
-	          	<h4>Pick a Nerdia avatar!</h4>
-	          	{ this.state.avatarList.map((avatarURL, index) => {
-	          		// display a list of avatar and whenever one of them is being clicked on
-	          		// display selected class & update this.state.photoURL
-	          		return <img className={ this.state.photoURL === avatarURL ? "avatar-img avatar-selected" : "avatar-img" }
-	          								src={ avatarURL }
-	          								key={ index } 
-	          								onClick={ () => this.selectAvatar(avatarURL) }/>
-	          	}) }
-	          </div>
-	    
-	          <button onClick={ (evt) => this.signup() }>Sign Up</button>
-	          <Link to={ "/login-up/" + (this.props.params.topic) }>Already have an account? Sign up!</Link>
-	          { this.state.error && <div className="error-message">Hey! It looks like: { this.state.error }</div> }
-	      </div>
-	    )
-	  } else {
-	  	return <ReactRedirect location={"/topic/" + (this.props.params.topic) }></ReactRedirect>
-	  }
+    return (
+      <div className="sign-up-container splash">
+          <h3>Sign up now for Nerdia!</h3>
+          <input required
+          			 type='text'
+                 placeholder="Your Name"
+                 onChange={ (evt) => this.setState({ userName: evt.target.value }) }/>
+          <input required
+          			 type='text'
+                 placeholder="Email"
+                 onChange={ (evt) => this.setState({ email: evt.target.value }) }/>
+          <input required
+          			 type='password'
+                 placeholder="Password"
+                 onChange={ (evt) => this.setState({ password: evt.target.value }) }/>
+          <div className="avatar-list">
+          	<h4>Pick a Nerdia avatar!</h4>
+          	{ this.state.avatarList.map((avatarURL, index) => {
+          		// display a list of avatar and whenever one of them is being clicked on
+          		// display selected class & update this.state.photoURL
+          		return <img className={ this.state.photoURL === avatarURL ? "avatar-img avatar-selected" : "avatar-img" }
+          								src={ avatarURL }
+          								key={ index } 
+          								onClick={ () => this.selectAvatar(avatarURL) }/>
+          	}) }
+          </div>
+    
+          <button onClick={ (evt) => this.signup() }>Sign Up</button>
+          <Link to={ "/login-up/" + (this.props.params.topic) }>Already have an account? Sign up!</Link>
+          { this.state.error && <div className="error-message">Hey! It looks like: { this.state.error }</div> }
+      </div>
+    )
   }
 
   selectAvatar(avatarURL) {
@@ -81,10 +77,15 @@ class SignUpPage extends React.Component {
       displayName: this.state.userName,
       photoURL: this.state.photoURL
     }))
-    .then(user => this.setState({ signupSuccess: true }))
     .catch(err => {
     	this.setState({ error: err.message })
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+  	if (nextProps.isUserLoggedIn) {
+  		browserHistory.push('/topic' + (this.props.params.topic));
+  	}
   }
 }
 

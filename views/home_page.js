@@ -10,16 +10,15 @@ class HomePage extends React.Component {
 			listOfQuizzes: [], 
 			filterText: '',
 			matchingTheSearch: false,
-			userLoggedIn: false,
 			currentUser: ''
 		};
 		this.handleUserInput = this.handleUserInput.bind(this);
+		this.findMatches = this.findMatches.bind(this);
 		this.populateQuizArray = this.populateQuizArray.bind(this);
 	}
 
 	componentDidMount() {
 		this.populateQuizArray();
-		this.checkUserLogIn();
 	}
 
 	// function fetching data from firebase to display available quizes
@@ -36,17 +35,6 @@ class HomePage extends React.Component {
 			quizzes.push(quiz);
 			this.setState({ listOfQuizzes: quizzes });
 		});
-	}
-
-	// function linked to loggedIn state
-	checkUserLogIn() {
-		firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ userLoggedIn: true });
-      } else {
-        this.setState({ userLoggedIn: false });
-      }
-    });
 	}
 
 	// function linked to Search Form
@@ -79,7 +67,7 @@ class HomePage extends React.Component {
 						onUserInput={this.handleUserInput} />
 
 					<h3 className="welcome-message">
-						Welcome to Nerdia { this.state.userLoggedIn ? "Guest" : this.state.currentUser }
+						Welcome to Nerdia, { !this.props.isUserLoggedIn ? "Guest" : this.state.currentUser }
 					</h3>
 
 					<div className="trivia">
@@ -87,7 +75,7 @@ class HomePage extends React.Component {
 								<TopicBlock key={quiz.name}
 											quizDetails={quiz}
 											className="trivia--game"
-											isUserLoggedIn={ this.state.userLoggedIn }
+											isUserLoggedIn={ this.props.isUserLoggedIn }
 								/>
 							)) }
 					</div>
