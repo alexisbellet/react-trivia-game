@@ -54,7 +54,7 @@ class SignUpPage extends React.Component {
           </div>
     
           <button onClick={ (evt) => this.signup() }>Sign Up</button>
-          <Link to={ "/login-up/" + (this.props.params.topic) }>Already have an account? Sign up!</Link>
+          <Link to={ "/login-up/" + (this.props.params.topic) }>Already have an account? Login!</Link>
           { this.state.error && <div className="error-message">Hey! It looks like: { this.state.error }</div> }
       </div>
     )
