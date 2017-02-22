@@ -148,6 +148,64 @@ header {
 }
 
 // //////////////////////
+// SIGN UP & LOG IN PAGES
+// /////////////////////
+
+.sign-up-container,
+.log-in-container {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.error-message {
+		color: red;
+		font-size: 130%;
+		margin-bottom: 10px;
+	}
+
+	button {
+		width: 25%;
+		border-radius: 10px;
+		border: none;
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+
+	a {
+		margin-bottom: 20px;
+	}
+
+	input {
+		width: 25%;
+		margin: 10px;
+		padding: 10px;
+	}
+}
+
+.avatar-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 20px 0;
+	
+	h4 {
+		width: 100%;
+		text-align: center;
+		text-decoration: underline;
+	}
+}
+.avatar-img {
+	width: 10%;
+	cursor: pointer;
+}
+.avatar-selected {
+	border: green solid 1px;
+	border-radius: 30px;
+}
+
+// //////////////////////
 // QUIZ COMPONENT
 // /////////////////////
 
