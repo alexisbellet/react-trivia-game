@@ -21,9 +21,9 @@ class Header extends React.Component {
 				  		</div>
 			  		</Link>
 			  		
-			  		<img className="avatar" src="../assets/min-code-on-screen.jpg" alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
+			  		<img className="avatar" src={this.props.user.photoURL} alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
 			  	</header>
-			  	{this.state.showResults && <UserDetails avatar={ this.props.photoURL } />}
+			  	{this.state.showResults && <UserDetails avatar={ this.props.user.photoURL } />}
 			</div>
 		)
 

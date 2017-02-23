@@ -52,14 +52,10 @@ class HomePage extends React.Component {
 	    // if something is typed && there are matches display only those
 	    // if there are no matches ask user to refine their search
 	    if (matchArray.length === this.state.listOfQuizzes.length) {
-	    	console.log('display all quizzes')
 	    	this.setState({matchingTheSearch: false});
-
 	    } else if (matchArray.length >= 1 ) {
-	    	console.log('a match exists');
-
+	    	//
 	    } else if (matchArray.length === 0 ) {
-			console.log('there is no match.');
 			this.setState({matchingTheSearch: 'no match'});
 	    }	
 	}
