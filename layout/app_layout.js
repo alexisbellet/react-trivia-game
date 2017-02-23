@@ -29,8 +29,8 @@ class AppLayout extends React.Component {
 
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
-			console.log('AppLayout: This user just logged/signed in: ', user);
 	    if (user) {
+	    	console.log('AppLayout: This user just logged/signed in: ', user);
 	      this.setState({ userLoggedIn: true, user: user });
 	    } else {
 	      this.setState({ userLoggedIn: false });

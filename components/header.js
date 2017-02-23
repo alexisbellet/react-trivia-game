@@ -36,7 +36,7 @@ class Header extends React.Component {
 			  		}
 
 			  	</header>
-			  	{this.state.showResults && <UserDetails avatar={ user.photoURL } />}
+			  	{this.state.showResults && <UserDetails avatar={ user.photoURL } closeDetails={ () => this.toggleUserDetails() }/>}
 			</div>
 		)
 
