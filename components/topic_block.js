@@ -3,12 +3,14 @@ import { Link } from 'react-router';
 
 class TopicBlock extends React.Component {
 	render() {
+		// shorten the path to quizDetails & isUserLoggedIn
+		const { quizDetails, isUserLoggedIn } = this.props;
 		return (
 			<div className="trivia--game">
-				<div className="categoryTitle">{this.props.quizDetails.details.category}</div>
-				<Link to={ this.props.isUserLoggedIn ? 
-						("topic/" + (this.props.quizDetails.name).replace(/ /g, "-")) : 
-						("log-in/" + (this.props.quizDetails.name).replace(/ /g, "-")) }>{ this.props.quizDetails.name }</Link>
+				<div className="categoryTitle">{quizDetails.details.category}</div>
+				<Link to={ isUserLoggedIn ? 
+						("/topic/" + (quizDetails.name).replace(/ /g, "-")) : 
+						("/log-in?topic=" + (quizDetails.name).replace(/ /g, "-")) }>{ quizDetails.name }</Link>
 
 			</div>
 		)

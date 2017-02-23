@@ -22,21 +22,18 @@ var config = {
 };
 firebase.initializeApp(config);
 
-//"loader?option1=option_value!./file.ext"
-
 /*
  * Via the render function in entry.js, we a declaring the route
  * architecture that the app will use in the different views
  */
-
 
 ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route path="/" component={AppLayout}>
 			<IndexRoute component={HomePage}/>
 			<Route path="topic/:topic" component={TopicPage}/>
-			<Route path="sign-up/:topic" component={SignUpPage} />
-			<Route path="log-in/:topic" component={LogInPage} />
+			<Route path="sign-up" component={SignUpPage} />
+			<Route path="log-in" component={LogInPage} />
 			<Route path="*" component={HomePage}/>
 		</Route>
 	</Router>

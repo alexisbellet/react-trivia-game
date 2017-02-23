@@ -26,6 +26,8 @@ class SignUpPage extends React.Component {
 	}
 
 	render() {
+    const { query } = this.props.location;
+    const { topic } = query;
     return (
       <div className="sign-up-container splash">
           <h3>Sign up now for Nerdia!</h3>
@@ -54,7 +56,7 @@ class SignUpPage extends React.Component {
           </div>
     
           <button onClick={ (evt) => this.signup() }>Sign Up</button>
-          <Link to={ "/login-up/" + (this.props.params.topic) }>Already have an account? Login!</Link>
+          <Link to={ topic ? "/log-in?topic=" + topic : "/log-in" }>Already have an account? Login!</Link>
           { this.state.error && <div className="error-message">Hey! It looks like: { this.state.error }</div> }
       </div>
     )
@@ -83,9 +85,14 @@ class SignUpPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-  	if (nextProps.isUserLoggedIn) {
-  		browserHistory.push('/topic' + (this.props.params.topic));
-  	}
+  	// Once the user has signed in, the page redirects to home or topic page (if exists as query)
+    if (nextProps.isUserLoggedIn) {
+      if (!this.props.location.query.topic) {
+        browserHistory.push('/');
+      } else {
+        browserHistory.push('/topic/' + (this.props.location.query.topic));
+      }
+    } 
   }
 }
 

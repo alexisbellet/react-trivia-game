@@ -23,8 +23,9 @@ class LogInPage extends React.Component {
 	}
 	
 	render() {
-		// Link to sign-up page keeps topic in the url so 
-		// user can be redirected to where he/she wanted to go at first
+		const { query } = this.props.location;
+		const { topic } = query;
+		// Link to sign-up page and keep on passing topic if it was passed as query
 		return (
 			<div className="log-in-container splash">
 		    <input type='text'
@@ -34,19 +35,19 @@ class LogInPage extends React.Component {
 		           placeholder="Password"
 		           onChange={ (evt) => this.setState({ password: evt.target.value }) }/>
 		    <button onClick={ (evt) => this.loginAttempt() }>Login</button>
-		    <Link to={ "/sign-up/" + (this.props.params.topic) }>Don't have an account? Sign up!</Link>
+		    <Link to={ topic ? "/sign-up?topic=" + topic : "/sign-up" }>Don't have an account? Sign up!</Link>
 		    { this.state.error && <div className="error-message">Hey! It looks like: { this.state.error }</div> }
 		  </div>
 		)
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// if doesnt exist, push just to slash
+		// Once the user is logged in, the login page redirects to home or topic page (if exists as query)
 		if (nextProps.isUserLoggedIn) {
-			if (!this.props.params.topic) {
+			if (!this.props.location.query.topic) {
 				browserHistory.push('/');
 			} else {
-				browserHistory.push('/topic' + (this.props.params.topic));
+				browserHistory.push('/topic/' + (this.props.location.query.topic));
 			}
 		} 
 	}
