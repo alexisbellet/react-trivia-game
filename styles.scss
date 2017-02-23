@@ -28,8 +28,8 @@ header {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-    align-items: center;
-    background: $neutral-color;
+  align-items: center;
+  background: $neutral-color;
 }
 
 .logo {
@@ -37,6 +37,13 @@ header {
 	flex-wrap: wrap;
 	justify-content: space-between;
     align-items: center;
+}
+
+.header-link-container {
+	width: 15%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .poster {

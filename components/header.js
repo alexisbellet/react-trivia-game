@@ -11,6 +11,8 @@ class Header extends React.Component {
 	}
 	
 	render() {
+		const { isUserLoggedIn, user } = this.props;
+		const { displayName } = user;
 		return (
 			<div className="headerContainer">
 			  	<header>
@@ -21,9 +23,20 @@ class Header extends React.Component {
 				  		</div>
 			  		</Link>
 			  		
-			  		<img className="avatar" src={this.props.user.photoURL} alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
+			  		{ // if user is loggedIn display avatar, if not, display signup & login buttons
+			  			isUserLoggedIn ? 
+			  			(<div>
+			  				<span>Hi { displayName }!</span>
+			  				<img className="avatar" src={ user.photoURL } alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
+			  			</div> ) :
+			  			(<div className="header-link-container">
+			  				<Link to="/sign-up">Sign up</Link> 
+			  				<Link to="/log-in">Log in</Link> 
+			  			</div>)
+			  		}
+
 			  	</header>
-			  	{this.state.showResults && <UserDetails avatar={ this.props.user.photoURL } />}
+			  	{this.state.showResults && <UserDetails avatar={ user.photoURL } />}
 			</div>
 		)
 

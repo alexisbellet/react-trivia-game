@@ -18,7 +18,7 @@ class UserDetails extends React.Component {
 		  		<img className="userDetails--avatar" src={this.props.avatar} alt="User Avatar"/>
 
 		  		{
-		  			!this.state.loggedIn ? <Login onLogin={ (userName) => this.login(userName) }/> :  <div><p> hi, {this.state.currentUser  } </p><button onClick={(evt) => { firebase.auth().signOut() }}>Logout</button></div>
+		  			!this.state.loggedIn ? <Login onLogin={ (userName) => this.login(userName) }/> :  <div><p> Wanna log out already? </p><button onClick={(evt) => { firebase.auth().signOut() }}>Logout</button></div>
 		  		}
 
 		  	</div>
