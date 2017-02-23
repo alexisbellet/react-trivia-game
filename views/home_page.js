@@ -46,31 +46,27 @@ class HomePage extends React.Component {
 	    });
 
 	    const matchArray = this.findMatches(filterText, this.state.listOfQuizzes);
-	    // console.table([matchArray]);
-	    // console.log('list o quizzes length ' +this.state.listOfQuizzes.length)
     	this.setState({matchingTheSearch: true, listOfMatchedQuizzes: [...matchArray]});
 
 	    // if nothing is typed show everything
 	    // if something is typed && there are matches display only those
 	    // if there are no matches ask user to refine their search
-
-	    if (matchArray.length >= 1) {
-	    	console.log('a match exists');
-
-	    } else if (matchArray.length === this.state.listOfQuizzes.length) {
+	    if (matchArray.length === this.state.listOfQuizzes.length) {
 	    	console.log('display all quizzes')
 	    	this.setState({matchingTheSearch: false});
 
+	    } else if (matchArray.length >= 1 ) {
+	    	console.log('a match exists');
+
 	    } else if (matchArray.length === 0 ) {
-			console.log('there is no match');
-			this.setState({matchingTheSearch: false});
+			console.log('there is no match.');
+			this.setState({matchingTheSearch: 'no match'});
 	    }	
 	}
 
 	findMatches(wordToMatch, quizzes){
 		return quizzes.filter(quiz => {
 			const rgex = new RegExp(wordToMatch, 'gi');
-			// console.log({quiz: quiz.name});
 			return quiz.name.match(rgex);
 		});
 	} 
@@ -93,14 +89,22 @@ class HomePage extends React.Component {
 					</h3>
 
 					<div className="trivia">
-						{ /* matchingTheSearch == true ? console.log('true') : console.log(false)*/}
 
-						{	this.state.listOfQuizzes.map( (quiz) => (
+						{ this.state.matchingTheSearch == true ? 
+							this.state.listOfMatchedQuizzes.map( (quiz) => (
 								<TopicBlock key={quiz.name}
 											quizDetails={quiz}
 											isUserLoggedIn={ this.props.isUserLoggedIn }
 								/>
-							)) }
+							))
+							: // else
+							this.state.listOfQuizzes.map( (quiz) => (
+								<TopicBlock key={quiz.name}
+											quizDetails={quiz}
+											isUserLoggedIn={ this.props.isUserLoggedIn }
+								/>
+							))
+						 }
 					</div>
 				</main>
 			</div>
