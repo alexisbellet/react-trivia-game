@@ -80,10 +80,6 @@ class HomePage extends React.Component {
 						matchingTheSearch={this.state.matchingTheSearch}
 						onUserInput={this.handleUserInput} />
 
-					<h3 className="welcome-message">
-						Welcome to Nerdia, { !this.props.isUserLoggedIn ? "Guest" : this.state.currentUser }
-					</h3>
-
 					<div className="trivia">
 
 						{ this.state.matchingTheSearch == true ? 

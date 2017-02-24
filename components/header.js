@@ -30,8 +30,8 @@ class Header extends React.Component {
 			  				<img className="avatar" src={ user.photoURL } alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
 			  			</div> ) :
 			  			(<div className="header-link-container">
-			  				<Link to="/sign-up">Sign up</Link> 
-			  				<Link to="/log-in">Log in</Link> 
+			  				<Link to="/sign-up" className="btn">Sign up</Link> 
+			  				<Link to="/log-in" className="btn">Log in</Link> 
 			  			</div>)
 			  		}
 

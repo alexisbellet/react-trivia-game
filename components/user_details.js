@@ -23,21 +23,6 @@ class UserDetails extends React.Component {
 	logout() {
 		this.props.closeDetails();
 		firebase.auth().signOut();
-
-	// login(userName) {
-	//   this.setState({ loggedIn: true, currentUser: userName });
-	// }
-
-	// componentDidMount(){
-	//   firebase.auth().onAuthStateChanged(user => {
-	//     if (user) {
-	//       this.login(user.displayName, user.photoUrl);
-	//       // console.log('the users photo url is ' + user.photoUrl)
-	//     } else {
-	//       this.setState({loggedIn: false})
-	//     }
-	//   })
-
 	}
 }
 
