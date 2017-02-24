@@ -21,9 +21,12 @@ export default class Countdown extends React.Component {
     clearInterval(this.interval);
   }
   render() {
-    const {remainingTime} = this.props;
+    const { remainingTime, currentQuestion, amountOfQuestions } = this.props;
+
+    // when currentQuestion is higher than the amountOfQuestions 
+    // (i.e. when the quiz is over), countdown hides
     return (
-      <div className="react-count-down">
+      <div className={currentQuestion >= amountOfQuestions ? "hide" : "react-count-down"}>
         <p type="text" className="countdownNum">
           {
             remainingTime > 1 ? 
@@ -37,3 +40,4 @@ export default class Countdown extends React.Component {
     )
   }
 }
+

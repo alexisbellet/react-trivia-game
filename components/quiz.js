@@ -33,7 +33,9 @@ class Quiz extends React.Component {
 			return (
 				<div key={i}
 						 className={ (i === currentQuestion) ? "active" : "hide" }>
+					
 					<h3> { question.text } </h3>
+					
 					{ question.answers.map( (answer, index) => (
 						<button key={index} 
 										value={answer} 
@@ -42,6 +44,7 @@ class Quiz extends React.Component {
 							{ answer }
 						</button>
 					) ) }
+
 				</div>
 			)
 		});
@@ -50,7 +53,9 @@ class Quiz extends React.Component {
 		return (
 			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
 				{content}
-				<Countdown remainingTime={ remainingTime } 
+				<Countdown currentQuestion={ currentQuestion }
+									 amountOfQuestions= { questionsWithShuffledAnswers.length }
+									 remainingTime={ remainingTime } 
 									 updateTimer={ this.updateTimer } />
 			</main>
 		)
@@ -100,7 +105,7 @@ class Quiz extends React.Component {
 				});
 			}
 
-			// update questionWithShuffledAnswers and reset the countdown to initial time
+			// update questionsWithShuffledAnswers and reset the countdown to initial time
 			this.setState({
 				questionsWithShuffledAnswers: questionsWithShuffledAnswers,
 				remainingTime: this.state.initialCountdownTime
@@ -115,15 +120,30 @@ class Quiz extends React.Component {
 	}
 
 	checkCorrectness(answer, index) {
+		const { timePerQuestion, currentQuestion, remainingTime, initialCountdownTime } = this.state;
 		let correctAnswer = this.props.questions[index].answers.correct;
+
+		// if the correct answer is chosen, pair the remaining time 
+		// and the question index in an object and add it to timePerQuestion object
 		if (answer === correctAnswer) {
-			// update states
+			timePerQuestion[index] = remainingTime;
 			this.setState({
-				currentQuestion: (this.state.currentQuestion + 1),
+				currentQuestion: (currentQuestion + 1),
+				timePerQuestion: timePerQuestion,
+				remainingTime: initialCountdownTime
 			});
 		} else {
-			console.log('wrong answer boooo');
+		// else if the wrong answer is chosen, pair 0 with the question index
+		// and add it to timePerQuestion object
+			timePerQuestion[index] = 0;
+			this.setState({
+				currentQuestion: (currentQuestion + 1),
+				timePerQuestion: timePerQuestion,
+				remainingTime: initialCountdownTime
+			});
 		}
+
+		console.log('quiz.js: here are the time per question: ', timePerQuestion);
 	}
 
 }
