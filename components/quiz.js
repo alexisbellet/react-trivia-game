@@ -33,9 +33,7 @@ class Quiz extends React.Component {
 			return (
 				<div key={i}
 						 className={ (i === currentQuestion) ? "active" : "hide" }>
-				
 					<h3> { question.text } </h3>
-				
 					{ question.answers.map( (answer, index) => (
 						<button key={index} 
 										value={answer} 
@@ -63,7 +61,7 @@ class Quiz extends React.Component {
 		// putting all the answers together in order to shuffle them
 		let questionsWithShuffledAnswers = [];
 
-		// this part is necessary so that when component first mounts, the code does not break
+		// the if statement part is necessary so that when component first mounts, the code does not break
 		if (length < 1) {
 			return;
 		} else {
@@ -106,7 +104,7 @@ class Quiz extends React.Component {
 			this.setState({
 				questionsWithShuffledAnswers: questionsWithShuffledAnswers,
 				remainingTime: this.state.initialCountdownTime
-			});
+			})
 		}
 	}
 
