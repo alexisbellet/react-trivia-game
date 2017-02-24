@@ -5,91 +5,123 @@ class Quiz extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			questionsWithShuffledAnswers: [],
       currentQuestion: 0,
-      initialCountdownTime: 30,
+      initialCountdownTime: 20,
       timePerQuestion: {},
-      remainingTime: 30
+      remainingTime: 20
     }
     this.checkCorrectness = this.checkCorrectness.bind(this);
-    this.shuffledAnswers = this.shuffledAnswers.bind(this);
+    this.shuffleAnswers = this.shuffleAnswers.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.questions) {
+			this.shuffleAnswers(nextProps.questions);
+		}
+	}
+
 	render() {
-		return (
+		const {questionsWithShuffledAnswers, currentQuestion, remainingTime} = this.state;
+		let content = null;
 
-			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
-				{ this.props.questions.map( (question, index) => (
-				<div key={index}
-							className={ (index === this.state.currentQuestion) ? "active" : "hide" }>
-							
-					<h3>{ question.text }</h3>
-
-					{ this.shuffledAnswers(index).map( (answer, index) => (
+		// if shuffleAnswer function finished running, display questions
+		questionsWithShuffledAnswers.length < 1 ?
+		content = ("Quiz is loading...") : 
+		content = questionsWithShuffledAnswers.map((question, i) => {
+			return (
+				<div key={i}
+						 className={ (i === currentQuestion) ? "active" : "hide" }>
+				
+					<h3> { question.text } </h3>
+				
+					{ question.answers.map( (answer, index) => (
 						<button key={index} 
 										value={answer} 
 										className="btn answer-btn" 
-										onClick={ (evt) => this.checkCorrectness(evt.target.value, this.state.currentQuestion) } >
+										onClick={ (evt) => this.checkCorrectness(evt.target.value, currentQuestion) } >
 							{ answer }
 						</button>
 					) ) }
 				</div>
+			)
+		});
 
-				) ) }
-				<Countdown remainingTime={ this.state.remainingTime } 
-									 updateTimer={this.updateTimer} />
+		// displaying container for "content"
+		return (
+			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+				{content}
+				<Countdown remainingTime={ remainingTime } 
+									 updateTimer={ this.updateTimer } />
 			</main>
-
 		)
 	}
 
-	shuffledAnswers(index) {
+	shuffleAnswers(questions) {
+		const length = questions.length;
 		// putting all the answers together in order to shuffle them
-		let answers = [];
-		this.props.questions[index].answers.incorrect.map((incorrectAnswer) => answers.push(incorrectAnswer));
-		answers.push(this.props.questions[index].answers.correct);
+		let questionsWithShuffledAnswers = [];
 
-		// shuffle method
-		let currentIndex = answers.length;
-		let temporaryValue; 
-		let randomIndex;
+		// this part is necessary so that when component first mounts, the code does not break
+		if (length < 1) {
+			return;
+		} else {
+			// loop through all the questions and shuffle the answers
+			for (let i = 0; i < length; i++) {
+				let shuffledAnswers = [];
+				let currentQuestion = questions[i].text;
+				let currentSetOfAnswers = questions[i].answers;
 
-		// While there remain elements to shuffle...
-		while (0 !== currentIndex) {
+				// push all the current answers into shuffledAnswers array
+				currentSetOfAnswers.incorrect.map((incorrectAnswer) => shuffledAnswers.push(incorrectAnswer));
+				shuffledAnswers.push(currentSetOfAnswers.correct);
 
-			// Pick a remaining element...
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
+				// shuffle shuffledAnswers array 
+				let currentIndex = shuffledAnswers.length;
+				let temporaryValue; 
+				let randomIndex;
 
-			// And swap it with the current element.
-			temporaryValue = answers[currentIndex];
-			answers[currentIndex] = answers[randomIndex];
-			answers[randomIndex] = temporaryValue;
+				// While there remain elements to shuffle...
+				while (0 !== currentIndex) {
+
+					// Pick a remaining element...
+					randomIndex = Math.floor(Math.random() * currentIndex);
+					currentIndex -= 1;
+
+					// And swap it with the current element.
+					temporaryValue = shuffledAnswers[currentIndex];
+					shuffledAnswers[currentIndex] = shuffledAnswers[randomIndex];
+					shuffledAnswers[randomIndex] = temporaryValue;
+				}
+
+				// push an object containing the shuffledAnswers & the question into the questionsWithShuffledAnswers array
+				questionsWithShuffledAnswers.push({
+					text: currentQuestion,
+					answers: shuffledAnswers
+				});
+			}
+
+			// update questionWithShuffledAnswers and reset the countdown to initial time
+			this.setState({
+				questionsWithShuffledAnswers: questionsWithShuffledAnswers,
+				remainingTime: this.state.initialCountdownTime
+			});
 		}
-
-		return answers;
 	}
 
 	updateTimer(newTime) {
-		console.log(newTime);
 		this.setState({
-					remainingTime: newTime
-				});
+			remainingTime: newTime
+		});
 	}
 
 	checkCorrectness(answer, index) {
 		let correctAnswer = this.props.questions[index].answers.correct;
 		if (answer === correctAnswer) {
-			// create an object with a key/value pair - currentQuestion/time to answer
-			// let timePerQuestion = this.state.timePerQuestion;
-			// timePerQuestion[this.state.currentQuestion] = (Date.now() - this.state.initialTimer);
-			// console.log('timePerQuestion after correct answer', timePerQuestion);
-
 			// update states
 			this.setState({
 				currentQuestion: (this.state.currentQuestion + 1),
-				// initialTimer: Date.now(),
-				// timePerQuestion: timePerQuestion
 			});
 		} else {
 			console.log('wrong answer boooo');
