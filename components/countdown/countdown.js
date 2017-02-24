@@ -9,7 +9,6 @@ export default class Countdown extends React.Component {
     this.decrementTimer = this.decrementTimer.bind(this);
   }
   decrementTimer() {
-    console.log("decrement", this.props.remainingTime);
     if (this.props.remainingTime >= 0){
       let result = this.props.remainingTime - 1;
       this.props.updateTimer(result);
@@ -22,9 +21,18 @@ export default class Countdown extends React.Component {
     clearInterval(this.interval);
   }
   render() {
+    const {remainingTime} = this.props;
     return (
       <div className="react-count-down">
-        <p type="text" className="countdownNum">{this.props.remainingTime}</p>
+        <p type="text" className="countdownNum">
+          {
+            remainingTime > 1 ? 
+            "Time left to answer: " + remainingTime + " seconds" : 
+            remainingTime === 1 ? 
+              "Time left to answer: " + remainingTime + " second" : 
+              "Time is out!"
+          }
+        </p>
       </div>
     )
   }
