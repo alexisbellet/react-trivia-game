@@ -7,9 +7,9 @@ class Quiz extends React.Component {
 		this.state = {
 			questionsWithShuffledAnswers: [],
       currentQuestion: 0,
-      initialCountdownTime: 5,
+      initialCountdownTime: 20,
       timePerQuestion: {},
-      remainingTime: 5,
+      remainingTime: 20,
       hasUserAnswered: false,
       displayCorrectnessCorrect: false,
       totalScoreForQuiz: 0,
@@ -28,6 +28,54 @@ class Quiz extends React.Component {
 		}
 	}
 
+	displayQuiz() {
+		const { questionsWithShuffledAnswers, 
+						currentQuestion, 
+						remainingTime, 
+						hasUserAnswered, 
+						timePerQuestion } = this.state;
+
+		if (this.state.questionsWithShuffledAnswers.length < 1) {
+			return (<div>Quiz is loading...</div>)
+		} else {
+			return (questionsWithShuffledAnswers.map((question, i) => {
+				return (
+					<div key={i}
+							 className={ (i === currentQuestion) ? "active" : "hide" }>
+						
+						<h3> { question.text } </h3>
+						
+						{ question.answers.map( (answer, index) => (
+							<button key={index} 
+											value={answer} 
+											disabled={ hasUserAnswered }
+											className={answer + " btn answer-btn"}
+											onClick={ (evt) => this.checkCorrectness(evt.target.value, currentQuestion) } >
+								{ answer }
+							</button>
+						) ) }
+
+						{ hasUserAnswered === true && this.state.displayCorrectnessCorrect === true ? 
+								<div>
+									<p>you answered the question correctly, you get {timePerQuestion[i]} points</p> 
+									<p>your score is ##</p> 
+									<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
+								</div>
+							: null }
+						{ hasUserAnswered === true && this.state.displayCorrectnessCorrect === false ? 
+								<div>
+									<p>you answered the question incorrectly. You get 0 new points...</p>
+									<p>the correct answer is {this.state.correctAnswer}</p> 
+									<p>your score is ##</p> 
+									<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
+								</div>
+							: null }	
+					</div>
+				)}
+			))
+		}
+	}
+
 	render() {
 		const { questionsWithShuffledAnswers, 
 						currentQuestion, 
@@ -35,53 +83,12 @@ class Quiz extends React.Component {
 						hasUserAnswered, 
 						timePerQuestion } = this.state;
 
-		let content = null;
-
-		// if shuffleAnswer function finished running, display questions
-		questionsWithShuffledAnswers.length < 1 ?
-		content = (<div>Quiz is loading...</div>) : 
-		content = questionsWithShuffledAnswers.map((question, i) => {
-			return (
-				<div key={i}
-						 className={ (i === currentQuestion) ? "active" : "hide" }>
-					
-					<h3> { question.text } </h3>
-					
-					{ question.answers.map( (answer, index) => (
-						<button key={index} 
-										value={answer} 
-										disabled={ hasUserAnswered }
-										className={answer + " btn answer-btn"}
-										onClick={ (evt) => this.checkCorrectness(evt.target.value, currentQuestion) } >
-							{ answer }
-						</button>
-					) ) }
-
-					{ hasUserAnswered === true && this.state.displayCorrectnessCorrect === true ? 
-							<div>
-								<p>you answered the question correctly, you get {timePerQuestion[i]} points</p> 
-								<p>your score is ##</p> 
-								<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
-							</div>
-						: null }
-					{ hasUserAnswered === true && this.state.displayCorrectnessCorrect === false ? 
-							<div>
-								<p>you answered the question incorrectly. You get 0 new points :(</p>
-								<p>the correct answer is {this.state.correctAnswer}</p> 
-								<p>your score is ##</p> 
-								<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
-							</div>
-						: null }	
-				</div>
-			)
-		});
-
 		// displaying container for "content"
 		return (
 			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
-				{content}
+				{ this.displayQuiz() }
 
-				{ this.state.hasUserAnswered ?
+				{ hasUserAnswered ?
 					(<div className="hide"></div>) :
 					(<Countdown currentQuestion={ currentQuestion }
 									 		amountOfQuestions= { questionsWithShuffledAnswers.length }
