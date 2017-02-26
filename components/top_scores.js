@@ -4,11 +4,6 @@ import firebase from 'firebase';
 class TopScores extends React.Component {
 	constructor() {
 		super();
-
-		this.state= {
-			quizNames: '',
-			user: ''
-		}
 	}
 
 	render() {
