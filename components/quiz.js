@@ -14,6 +14,7 @@ class Quiz extends React.Component {
     this.checkCorrectness = this.checkCorrectness.bind(this);
     this.shuffleAnswers = this.shuffleAnswers.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
+    this.advanceQuiz = this.advanceQuiz.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -119,28 +120,41 @@ class Quiz extends React.Component {
 		});
 	}
 
+	displayCorrectAnswer(){
+
+	}
+
+	advanceQuiz(currentQuestion, initialCountdownTime){
+		// move advancing quiz by updating state here so it can be called when appropriate
+		this.setState({
+			currentQuestion: (currentQuestion + 1),
+			remainingTime: initialCountdownTime
+		})
+	}
+
 	checkCorrectness(answer, index) {
 		const { timePerQuestion, currentQuestion, remainingTime, initialCountdownTime } = this.state;
 		let correctAnswer = this.props.questions[index].answers.correct;
+
+		this.displayCorrectAnswer();
 
 		// if the correct answer is chosen, pair the remaining time 
 		// and the question index in an object and add it to timePerQuestion object
 		if (answer === correctAnswer) {
 			timePerQuestion[index] = remainingTime;
 			this.setState({
-				currentQuestion: (currentQuestion + 1),
-				timePerQuestion: timePerQuestion,
-				remainingTime: initialCountdownTime
+				timePerQuestion: timePerQuestion,		
 			});
+			this.advanceQuiz(currentQuestion, initialCountdownTime);
+
 		} else {
 		// else if the wrong answer is chosen, pair 0 with the question index
 		// and add it to timePerQuestion object
 			timePerQuestion[index] = 0;
 			this.setState({
-				currentQuestion: (currentQuestion + 1),
-				timePerQuestion: timePerQuestion,
-				remainingTime: initialCountdownTime
+				timePerQuestion: timePerQuestion
 			});
+			this.advanceQuiz(currentQuestion, initialCountdownTime);
 		}
 
 		console.log('quiz.js: here are the time per question: ', timePerQuestion);
