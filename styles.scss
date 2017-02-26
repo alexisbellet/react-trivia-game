@@ -46,6 +46,18 @@ header {
 	align-items: center;
 }
 
+.page-not-found-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	p {
+		margin-top: 30px;
+		font-size: 150%;
+	}
+}
+
 .poster {
 	background: $secondary-color;
 	background: url('/assets/min-code-on-screen.jpg');
