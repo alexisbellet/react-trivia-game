@@ -195,7 +195,6 @@ class Quiz extends React.Component {
 			this.calculateScore(timePerQuestion);
 			// this.advanceQuiz(currentQuestion);
 		}
-		// console.log('quiz.js: here are the times per question: ', timePerQuestion);
 	}
 
 }
