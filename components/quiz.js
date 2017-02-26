@@ -19,6 +19,7 @@ class Quiz extends React.Component {
     this.shuffleAnswers = this.shuffleAnswers.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
     this.advanceQuiz = this.advanceQuiz.bind(this);
+    // this.calculateScore = this.calculateScore.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -54,13 +55,15 @@ class Quiz extends React.Component {
 					{ displayCorrectness === true && this.state.displayCorrectnessCorrect === true ? 
 							<div>
 								<p>you answered the question correctly, you get {timePerQuestion[i]} points</p> 
+								<p>your score is ##</p> 
 								<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
 							</div>
 						: null }
 					{ displayCorrectness === true && this.state.displayCorrectnessCorrect === false ? 
 							<div>
-								<p>you answered the question incorrectly</p>
+								<p>you answered the question incorrectly. You get 0 new points :(</p>
 								<p>the correct answer is {this.state.correctAnswer}</p> 
+								<p>your score is ##</p> 
 								<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
 							</div>
 						: null }	
@@ -81,6 +84,15 @@ class Quiz extends React.Component {
 			</main>
 		)
 	}
+
+	// calculateScore(allPoints){
+	// 	console.log(allPoints);
+
+	// 	allPoints = object.keys(allPoints);
+
+
+	// 	return result;
+	// }
 
 	shuffleAnswers(questions) {
 		const length = questions.length;
@@ -170,6 +182,7 @@ class Quiz extends React.Component {
 				timePerQuestion: timePerQuestion,		
 				displayCorrectnessCorrect: true
 			});
+			this.calculateScore(timePerQuestion);
 			// this.advanceQuiz(currentQuestion);
 
 		} else {
@@ -179,10 +192,10 @@ class Quiz extends React.Component {
 			this.setState({
 				timePerQuestion: timePerQuestion
 			});
+			this.calculateScore(timePerQuestion);
 			// this.advanceQuiz(currentQuestion);
 		}
-
-		console.log('quiz.js: here are the times per question: ', timePerQuestion);
+		// console.log('quiz.js: here are the times per question: ', timePerQuestion);
 	}
 
 }

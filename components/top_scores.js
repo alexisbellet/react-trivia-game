@@ -11,8 +11,8 @@ class TopScores extends React.Component {
 			<div className="top-scores">
 				<p className="highScore--list  highScore--list__currentUser">You:</p>
 				<div className="highScore--User  highScore--User__thisUser">
-					<img src="" alt="User Avatar" className="userAvatar"/>
-					<p className="display">{this.props.user}</p>
+					<img src={ this.context.currentPhoto } alt="User Avatar" className="userAvatar"/>
+					<p className="display">{ this.context.currentUserName }</p>
 					<div className="scoreProgress">
 						<div className="scoreProgress--filled"></div>
 					</div>
@@ -42,15 +42,11 @@ class TopScores extends React.Component {
 			</div>
 		)
 	}
+}
 
-	componentDidMount(){
-
-		const firebaseRef = firebase.database().ref('/user/');
-		firebaseRef.once('value', (snapshot) => {
-			this.setState({user: Object.keys(snapshot.val() )});
-			// console.log(snapshot.val());
-		})
-	}
+TopScores.contextTypes = {
+	currentUserName: React.PropTypes.string,
+	currentPhoto: React.PropTypes.string
 }
 
 export default TopScores;

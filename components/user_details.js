@@ -4,7 +4,7 @@ import firebase from 'firebase';
 
 class UserDetails extends React.Component {
 	constructor() {
-	  super()
+	  super();
 	  this.logout = this.logout.bind(this);
 	}
 
