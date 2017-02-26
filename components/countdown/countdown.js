@@ -9,9 +9,17 @@ export default class Countdown extends React.Component {
     this.decrementTimer = this.decrementTimer.bind(this);
   }
   decrementTimer() {
-    if (this.props.remainingTime >= 0){
+    if (this.props.remainingTime > 0) {
       let result = this.props.remainingTime - 1;
       this.props.updateTimer(result);
+    } else if (this.props.remainingTime === 0) {
+      let result = this.props.remainingTime - 1;
+      this.props.updateTimer(result);
+      // when time is out, countdown calls checkCorrectness with 
+      // an empty string and currentQuestion as an index
+      this.props.checkCorrectness('', this.props.currentQuestion);
+    } else {
+      return;
     }
   }
   componentDidMount() {

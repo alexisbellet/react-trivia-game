@@ -80,7 +80,8 @@ class Quiz extends React.Component {
 				<Countdown currentQuestion={ currentQuestion }
 									 amountOfQuestions= { questionsWithShuffledAnswers.length }
 									 remainingTime={ remainingTime } 
-									 updateTimer={ this.updateTimer } />
+									 updateTimer={ this.updateTimer } 
+									 checkCorrectness={ this.checkCorrectness }/>
 			</main>
 		)
 	}
@@ -169,6 +170,7 @@ class Quiz extends React.Component {
 	}
 
 	checkCorrectness(answer, index) {
+		console.log('checkCorrectness for', answer, index);
 		const { timePerQuestion, currentQuestion, remainingTime } = this.state;
 		let correctAnswer = this.props.questions[index].answers.correct;
 
