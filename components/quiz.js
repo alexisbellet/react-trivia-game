@@ -9,12 +9,17 @@ class Quiz extends React.Component {
       currentQuestion: 0,
       initialCountdownTime: 20,
       timePerQuestion: {},
-      remainingTime: 20
+      remainingTime: 20,
+      displayCorrectness: false,
+      displayCorrectnessCorrect: false,
+      totalScoreForQuiz: 0,
+      correctAnswer: null
     }
     this.checkCorrectness = this.checkCorrectness.bind(this);
     this.shuffleAnswers = this.shuffleAnswers.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
     this.advanceQuiz = this.advanceQuiz.bind(this);
+    // this.calculateScore = this.calculateScore.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -24,7 +29,7 @@ class Quiz extends React.Component {
 	}
 
 	render() {
-		const {questionsWithShuffledAnswers, currentQuestion, remainingTime} = this.state;
+		const {questionsWithShuffledAnswers, currentQuestion, remainingTime, displayCorrectness, timePerQuestion } = this.state;
 		let content = null;
 
 		// if shuffleAnswer function finished running, display questions
@@ -40,11 +45,28 @@ class Quiz extends React.Component {
 					{ question.answers.map( (answer, index) => (
 						<button key={index} 
 										value={answer} 
-										className="btn answer-btn" 
+										disabled={displayCorrectness}
+										className={answer + " btn answer-btn"}
 										onClick={ (evt) => this.checkCorrectness(evt.target.value, currentQuestion) } >
 							{ answer }
 						</button>
 					) ) }
+
+					{ displayCorrectness === true && this.state.displayCorrectnessCorrect === true ? 
+							<div>
+								<p>you answered the question correctly, you get {timePerQuestion[i]} points</p> 
+								<p>your score is ##</p> 
+								<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
+							</div>
+						: null }
+					{ displayCorrectness === true && this.state.displayCorrectnessCorrect === false ? 
+							<div>
+								<p>you answered the question incorrectly. You get 0 new points :(</p>
+								<p>the correct answer is {this.state.correctAnswer}</p> 
+								<p>your score is ##</p> 
+								<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
+							</div>
+						: null }	
 
 				</div>
 			)
@@ -54,6 +76,7 @@ class Quiz extends React.Component {
 		return (
 			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
 				{content}
+
 				<Countdown currentQuestion={ currentQuestion }
 									 amountOfQuestions= { questionsWithShuffledAnswers.length }
 									 remainingTime={ remainingTime } 
@@ -61,6 +84,15 @@ class Quiz extends React.Component {
 			</main>
 		)
 	}
+
+	// calculateScore(allPoints){
+	// 	console.log(allPoints);
+
+	// 	allPoints = object.keys(allPoints);
+
+
+	// 	return result;
+	// }
 
 	shuffleAnswers(questions) {
 		const length = questions.length;
@@ -120,23 +152,27 @@ class Quiz extends React.Component {
 		});
 	}
 
-	displayCorrectAnswer(){
-
+	displayCorrectAnswer(correctAnswer){
+		this.setState({
+			displayCorrectness: true,
+			correctAnswer: correctAnswer
+		});
 	}
 
-	advanceQuiz(currentQuestion, initialCountdownTime){
+	advanceQuiz(index, currentQuestion){
 		// move advancing quiz by updating state here so it can be called when appropriate
 		this.setState({
 			currentQuestion: (currentQuestion + 1),
-			remainingTime: initialCountdownTime
+			remainingTime: this.state.initialCountdownTime,
+			displayCorrectness: false
 		})
 	}
 
 	checkCorrectness(answer, index) {
-		const { timePerQuestion, currentQuestion, remainingTime, initialCountdownTime } = this.state;
+		const { timePerQuestion, currentQuestion, remainingTime } = this.state;
 		let correctAnswer = this.props.questions[index].answers.correct;
 
-		this.displayCorrectAnswer();
+		this.displayCorrectAnswer(correctAnswer);
 
 		// if the correct answer is chosen, pair the remaining time 
 		// and the question index in an object and add it to timePerQuestion object
@@ -144,8 +180,10 @@ class Quiz extends React.Component {
 			timePerQuestion[index] = remainingTime;
 			this.setState({
 				timePerQuestion: timePerQuestion,		
+				displayCorrectnessCorrect: true
 			});
-			this.advanceQuiz(currentQuestion, initialCountdownTime);
+			this.calculateScore(timePerQuestion);
+			// this.advanceQuiz(currentQuestion);
 
 		} else {
 		// else if the wrong answer is chosen, pair 0 with the question index
@@ -154,10 +192,10 @@ class Quiz extends React.Component {
 			this.setState({
 				timePerQuestion: timePerQuestion
 			});
-			this.advanceQuiz(currentQuestion, initialCountdownTime);
+			this.calculateScore(timePerQuestion);
+			// this.advanceQuiz(currentQuestion);
 		}
-
-		console.log('quiz.js: here are the time per question: ', timePerQuestion);
+		// console.log('quiz.js: here are the times per question: ', timePerQuestion);
 	}
 
 }

@@ -27,10 +27,18 @@ class AppLayout extends React.Component {
 		)
 	}
 
+	// provides value for children
+	getChildContext(){
+		return {
+			currentUserName: this.state.user.displayName,
+			currentPhoto: this.state.user.photoURL
+		}
+	}
+
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
 	    if (user) {
-	    	console.log('AppLayout: This user just logged/signed in: ', user);
+	      // console.log('AppLayout: This user just logged/signed in: ', user);
 	      this.setState({ userLoggedIn: true, user: user });
 	    } else {
 	      this.setState({ userLoggedIn: false });
@@ -38,6 +46,12 @@ class AppLayout extends React.Component {
 	  });
 	}
 
-}			
+}	
+
+//documents what info is avail to children
+AppLayout.childContextTypes = {
+	currentUserName: React.PropTypes.string,
+	currentPhoto: React.PropTypes.string
+}	
 
 export default AppLayout;
