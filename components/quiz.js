@@ -86,14 +86,17 @@ class Quiz extends React.Component {
 		)
 	}
 
-	// calculateScore(allPoints){
-	// 	console.log(allPoints);
+	calculateScore(allPoints){
 
-	// 	allPoints = object.keys(allPoints);
+		allPoints = Object.values(allPoints);
+		allPoints = allPoints.map(Number);
 
+		const result = allPoints.reduce((a, b) => a + b, 0)
 
-	// 	return result;
-	// }
+		console.log(allPoints, result);
+
+		return result;
+	}
 
 	shuffleAnswers(questions) {
 		const length = questions.length;
@@ -185,8 +188,6 @@ class Quiz extends React.Component {
 				displayCorrectnessCorrect: true
 			});
 			this.calculateScore(timePerQuestion);
-			// this.advanceQuiz(currentQuestion);
-
 		} else {
 		// else if the wrong answer is chosen, pair 0 with the question index
 		// and add it to timePerQuestion object
@@ -195,7 +196,6 @@ class Quiz extends React.Component {
 				timePerQuestion: timePerQuestion
 			});
 			this.calculateScore(timePerQuestion);
-			// this.advanceQuiz(currentQuestion);
 		}
 	}
 
