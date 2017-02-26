@@ -35,6 +35,7 @@ class LogInPage extends React.Component {
 		           placeholder="Password"
 		           onChange={ (evt) => this.setState({ password: evt.target.value }) }/>
 		    <button onClick={ (evt) => this.loginAttempt() }>Login</button>
+		    <Link to={ topic ? "/reset-password?topic=" + topic : "/reset-password" }>Forgot your password?</Link>
 		    <Link to={ topic ? "/sign-up?topic=" + topic : "/sign-up" }>Don't have an account? Sign up!</Link>
 		    { this.state.error && <div className="error-message">Hey! It looks like: { this.state.error }</div> }
 		  </div>

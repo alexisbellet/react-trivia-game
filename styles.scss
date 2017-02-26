@@ -168,9 +168,44 @@ header {
     background:#ffc600;
 }
 
-// //////////////////////
-// SIGN UP & LOG IN PAGES
-// /////////////////////
+// /////////////////////////////////////////////////
+// SIGN UP, LOG IN, PW RESET & PAGE NOT FOUND PAGES
+// ////////////////////////////////////////////////
+
+.reset-passwrod-container,
+.page-not-found-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.reset-passwrod-container {
+	button {
+		margin-top: 20px;
+		width: 25%;
+		border-radius: 10px;
+		border: none;
+		padding: 10px;
+	}
+	input {
+		width: 40vw;
+		margin: 20px;
+		padding: 10px;
+	}
+	.error-message {
+		color: red;
+		font-size: 130%;
+		margin-bottom: 10px;
+	}
+}
+
+.page-not-found-container {
+	p {
+		margin-top: 30px;
+		font-size: 150%;
+	}
+}
 
 .sign-up-container,
 .log-in-container {
@@ -217,10 +252,12 @@ header {
 		text-decoration: underline;
 	}
 }
+
 .avatar-img {
 	width: 10%;
 	cursor: pointer;
 }
+
 .avatar-selected {
 	border: green solid 1px;
 	border-radius: 30px;
