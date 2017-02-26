@@ -105,29 +105,30 @@ class Quiz extends React.Component {
 		allPoints = Object.values(allPoints);
 		allPoints = allPoints.map(Number);
 
-		// if is first question or the previous answer value is 0 multiply num *1
-		// cumulatively add numbers before and the more correct answers in a row multiply score by higher number
-		// make that a new array and add all those numbers together
-		let prevValue = 0;
+		let streakArray = [];
 
 		allPoints = allPoints.map((num, i) => {
-			console.log(prevValue);
+			if (num === 0) {
+				streakArray = [];
+			} else {
 
-			if (prevValue !== 0 ) {
-			// store value to ve used next time as previous value
-			// prevValue = num;
-			console.log('not zero')
+				if (streakArray.length == 0 ) { // there is no streak so stays
+					streakArray.push(num);
+					// console.log('no streak length is' + streakArray.length + ' so num is ' + num, );
 
-			} else if (prevValue == 0){
-				num = (num * 1.1);
-				console.log(num)
+				} else if (streakArray.length !== 0){ // streak so multiply
+					streakArray.push(num);
+					let newMultiplier = ((streakArray.length * 2) / 10) + 1;
+					num = (num * newMultiplier);
+					console.log('mult ' + newMultiplier);
+				}
 			}
-			return num;
+			return Math.round(num);
 		});
 
 		const result = allPoints.reduce((a, b) => a + b, 0)
 
-		console.log(allPoints);
+		console.log(allPoints + ' add up to the all points ' + result);
 
 		this.setState({
 			totalScoreForQuiz: result

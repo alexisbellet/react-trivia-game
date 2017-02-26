@@ -20,48 +20,48 @@ $dark-color: #1B202A;
 }
 
 body {
-	background: $primary-color;
+  background: $primary-color;
 
 }
 
 header {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
   background: $neutral-color;
 }
 
 .logo {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header-link-container {
-	width: 15%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+  width: 15%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .poster {
-	background: $secondary-color;
-	background: url('/assets/min-code-on-screen.jpg');
-	background-size: cover;
-	min-height: 400px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center
+  background: $secondary-color;
+  background: url('/assets/min-code-on-screen.jpg');
+  background-size: cover;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center
 }
 
 .poster--title {
-	color: $primary-color;
-	font: 80px cursive;
-	max-width: 60%;
-	text-shadow: 5px 4px 2px black;
+  color: $primary-color;
+  font: 80px cursive;
+  max-width: 60%;
+  text-shadow: 5px 4px 2px black;
 }
 
 .search-wrapper {
@@ -73,46 +73,46 @@ header {
     text-align: center;
 
     input{
-    	max-height: 100%;
-    	border: none;
-    	border-right: 1px solid #484848;
-    	border-left: 1px solid #484848;
-    	min-width: 75%;
-	    text-align: center;
+      max-height: 100%;
+      border: none;
+      border-right: 1px solid #484848;
+      border-left: 1px solid #484848;
+      min-width: 75%;
+      text-align: center;
     }
 }
 
 .trivia {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 40px 20px;
 }
 
 .trivia--game {
-	height: 200px;
-	width: 200px;
-	border: 3px solid $dark-color;
-	display: inline-block;
-	margin: 20px auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
+  height: 200px;
+  width: 200px;
+  border: 3px solid $dark-color;
+  display: inline-block;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .categoryTitle {
-	position: absolute;
+  position: absolute;
     top: 0;
     left: 5px;
     text-transform: uppercase;
 }
 
 .avatar {
-	height: 70px;
-	width: 70px;
-	border-radius: 50%;
-	margin: 10px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin: 10px;
 }
 
 // //////////////////////
@@ -120,48 +120,48 @@ header {
 // /////////////////////
 
 .userDetails {
-	position: absolute;
-	background: $neutral-color;
-	right: 25px;
-	top: 100px;
-	min-width: 220px;
-	min-height: 265px;
-	display: flex;
-	align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  position: absolute;
+  background: $neutral-color;
+  right: 25px;
+  top: 100px;
+  min-width: 220px;
+  min-height: 265px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
   &--avatar {
-		height: 150px;
-		width: 150px;
-		border-radius: 50%;
-		margin: 0 0 30px;
-	}
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: 0 0 30px;
+  }
 
-	div {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .sugestions {
-	margin: 0;
+  margin: 0;
     padding: 0;
     position: absolute;
 }
 
 .suggestions li {
-	background:white;
-	list-style: none;
-	border-bottom: 1px solid #D8D8D8;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
-	margin:0;
-	padding:20px;
-	transition:background 0.2s;
-	display:flex;
-	justify-content:space-between;
-	text-transform: capitalize;
+  background:white;
+  list-style: none;
+  border-bottom: 1px solid #D8D8D8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  margin:0;
+  padding:20px;
+  transition:background 0.2s;
+  display:flex;
+  justify-content:space-between;
+  text-transform: capitalize;
 }
 
 .suggestions li span span {
@@ -174,93 +174,93 @@ header {
 
 .reset-passwrod-container,
 .page-not-found-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .reset-passwrod-container {
-	button {
-		margin-top: 20px;
-		width: 25%;
-		border-radius: 10px;
-		border: none;
-		padding: 10px;
-	}
-	input {
-		width: 40vw;
-		margin: 20px;
-		padding: 10px;
-	}
-	.error-message {
-		color: red;
-		font-size: 130%;
-		margin-bottom: 10px;
-	}
+  button {
+    margin-top: 20px;
+    width: 25%;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+  }
+  input {
+    width: 40vw;
+    margin: 20px;
+    padding: 10px;
+  }
+  .error-message {
+    color: red;
+    font-size: 130%;
+    margin-bottom: 10px;
+  }
 }
 
 .page-not-found-container {
-	p {
-		margin-top: 30px;
-		font-size: 150%;
-	}
+  p {
+    margin-top: 30px;
+    font-size: 150%;
+  }
 }
 
 .sign-up-container,
 .log-in-container {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-	.error-message {
-		color: red;
-		font-size: 130%;
-		margin-bottom: 10px;
-	}
+  .error-message {
+    color: red;
+    font-size: 130%;
+    margin-bottom: 10px;
+  }
 
-	button {
-		width: 25%;
-		border-radius: 10px;
-		border: none;
-		padding: 10px;
-		margin-bottom: 10px;
-	}
+  button {
+    width: 25%;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
 
-	a {
-		margin-bottom: 20px;
-	}
+  a {
+    margin-bottom: 20px;
+  }
 
-	input {
-		width: 25%;
-		margin: 10px;
-		padding: 10px;
-	}
+  input {
+    width: 25%;
+    margin: 10px;
+    padding: 10px;
+  }
 }
 
 .avatar-list {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	margin: 20px 0;
-	
-	h4 {
-		width: 100%;
-		text-align: center;
-		text-decoration: underline;
-	}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  
+  h4 {
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+  }
 }
 
 .avatar-img {
-	width: 10%;
-	cursor: pointer;
+  width: 10%;
+  cursor: pointer;
 }
 
 .avatar-selected {
-	border: green solid 1px;
-	border-radius: 30px;
+  border: green solid 1px;
+  border-radius: 30px;
 }
 
 // //////////////////////
@@ -268,49 +268,63 @@ header {
 // /////////////////////
 
 .quiz-title {
-	text-align: center;
-	clear: both;
-	display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-align: center;
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .quiz-container {
-	text-align: center;
+  text-align: center;
 }
 
 .quiz-container h3 {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .answer-btn {
-	width: 40%;
-	margin: 5%;
+  width: 40%;
+  margin: 5%;
 }
 
 .countdownNum {
-	text-align: center
+  text-align: center
 }
 
 // //////////////////////
 // HIGH SCORES
 // /////////////////////
 
+.top-scores {
+  padding: 20px;
+
+  .user--identifier {
+    width: 25%;
+    position: relative;
+
+    .display {
+      position: relative;
+      top: -20px;
+    }
+  }
+}
+
 .highScore--User {
-	display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .scoreProgress { 
-	border: 1px solid black;
-    width: 150px;
-    height: 15px;
+  border: 1px solid black;
+  width: 150px;
+  height: 15px;
 }
 
 .scoreProgress--filled {
-	background: #F6D5E0;
-	height: 100%;
-	width: 50%;
+  background: #F6D5E0;
+  height: 100%;
+  width: 50%;
 }
