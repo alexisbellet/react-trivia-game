@@ -19,7 +19,7 @@ class Quiz extends React.Component {
     this.shuffleAnswers = this.shuffleAnswers.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
     this.advanceQuiz = this.advanceQuiz.bind(this);
-    // this.calculateScore = this.calculateScore.bind(this);
+    this.calculateScore = this.calculateScore.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -58,7 +58,7 @@ class Quiz extends React.Component {
 						{ hasUserAnswered === true && this.state.displayCorrectnessCorrect === true ? 
 								<div>
 									<p>you answered the question correctly, you get {timePerQuestion[i]} points</p> 
-									<p>your score is ##</p> 
+									<p>your score is { this.state.totalScoreForQuiz }</p> 
 									<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
 								</div>
 							: null }
@@ -66,7 +66,7 @@ class Quiz extends React.Component {
 								<div>
 									<p>you answered the question incorrectly. You get 0 new points...</p>
 									<p>the correct answer is {this.state.correctAnswer}</p> 
-									<p>your score is ##</p> 
+									<p>your score is { this.state.totalScoreForQuiz }</p> 
 									<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
 								</div>
 							: null }	
@@ -81,7 +81,8 @@ class Quiz extends React.Component {
 						currentQuestion, 
 						remainingTime, 
 						hasUserAnswered, 
-						timePerQuestion } = this.state;
+						timePerQuestion, 
+						totalScoreForQuiz } = this.state;
 
 		// displaying container for "content"
 		return (
@@ -101,15 +102,36 @@ class Quiz extends React.Component {
 	}
 
 	calculateScore(allPoints){
-
 		allPoints = Object.values(allPoints);
 		allPoints = allPoints.map(Number);
 
+		// if is first question or the previous answer value is 0 multiply num *1
+		// cumulatively add numbers before and the more correct answers in a row multiply score by higher number
+		// make that a new array and add all those numbers together
+		let prevValue = 0;
+
+		allPoints = allPoints.map((num, i) => {
+			console.log(prevValue);
+
+			if (prevValue !== 0 ) {
+			// store value to ve used next time as previous value
+			// prevValue = num;
+			console.log('not zero')
+
+			} else if (prevValue == 0){
+				num = (num * 1.1);
+				console.log(num)
+			}
+			return num;
+		});
+
 		const result = allPoints.reduce((a, b) => a + b, 0)
 
-		console.log(allPoints, result);
+		console.log(allPoints);
 
-		return result;
+		this.setState({
+			totalScoreForQuiz: result
+		}) 
 	}
 
 	shuffleAnswers(questions) {
@@ -187,7 +209,7 @@ class Quiz extends React.Component {
 	}
 
 	checkCorrectness(answer, index) {
-		console.log('checkCorrectness for', answer, index);
+		// console.log('checkCorrectness for', answer, index);
 		const { timePerQuestion, currentQuestion, remainingTime } = this.state;
 		let correctAnswer = this.props.questions[index].answers.correct;
 

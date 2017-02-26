@@ -5,6 +5,20 @@
    }, 
    "quizzes":{  
       "JavaScript Facts and Fun": {  
+         "scores":{
+            "firstPlace":{
+               "score": "",
+               "user": ""
+            },
+            "secondPlace":{
+               "score": "",
+               "user": ""
+            },
+            "thirdPlace":{
+               "score": "",
+               "user": ""
+            }
+         },
          "category":"JavaScript",
          "questionList":{  
             "0": {
@@ -46,6 +60,20 @@
          }
       },
       "Popular Algorithms": {  
+         "scores":{
+            "firstPlace":{
+               "score": "",
+               "user": ""
+            },
+            "secondPlace":{
+               "score": "",
+               "user": ""
+            },
+            "thirdPlace":{
+               "score": "",
+               "user": ""
+            }
+         },
          "category":"Computer Science",
          "questionList":{  
             "0": {
