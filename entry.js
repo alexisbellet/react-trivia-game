@@ -8,6 +8,7 @@ import HomePage from './views/home_page';
 import TopicPage from './views/topic_page';
 import LogInPage from './views/login_page';
 import SignUpPage from './views/signup_page';
+import ResetPasswordPage from './views/resetpassword_page';
 import PageNotFound from './views/notfound_page';
 
 require("file?name=[name].[ext]!./index.html");
@@ -35,6 +36,7 @@ ReactDOM.render((
 			<Route path="topic/:topic" component={TopicPage}/>
 			<Route path="sign-up" component={SignUpPage} />
 			<Route path="log-in" component={LogInPage} />
+			<Route path="reset-password" component={ResetPasswordPage} />
 			<Route path="*" component={PageNotFound}/>
 		</Route>
 	</Router>
