@@ -13,7 +13,8 @@ class Quiz extends React.Component {
       hasUserAnswered: false,
       displayCorrectnessCorrect: false,
       totalScoreForQuiz: 0,
-      correctAnswer: null
+      correctAnswer: null,
+      pointsThisQuestion: 0
     }
     this.checkCorrectness = this.checkCorrectness.bind(this);
     this.shuffleAnswers = this.shuffleAnswers.bind(this);
@@ -33,7 +34,8 @@ class Quiz extends React.Component {
 						currentQuestion, 
 						remainingTime, 
 						hasUserAnswered, 
-						timePerQuestion } = this.state;
+						timePerQuestion,
+						pointsThisQuestion } = this.state;
 
 		if (this.state.questionsWithShuffledAnswers.length < 1) {
 			return (<div>Quiz is loading...</div>)
@@ -57,7 +59,7 @@ class Quiz extends React.Component {
 
 						{ hasUserAnswered === true && this.state.displayCorrectnessCorrect === true ? 
 								<div>
-									<p>you answered the question correctly, you get {timePerQuestion[i]} points</p> 
+									<p>you answered the question correctly, you get {pointsThisQuestion} points</p> 
 									<p>your score is { this.state.totalScoreForQuiz }</p> 
 									<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
 								</div>
@@ -82,7 +84,8 @@ class Quiz extends React.Component {
 						remainingTime, 
 						hasUserAnswered, 
 						timePerQuestion, 
-						totalScoreForQuiz } = this.state;
+						totalScoreForQuiz,
+						pointsThisQuestion } = this.state;
 
 		// displaying container for "content"
 		return (
@@ -126,12 +129,14 @@ class Quiz extends React.Component {
 			return Math.round(num);
 		});
 
-		const result = allPoints.reduce((a, b) => a + b, 0)
+		const result = allPoints.reduce((a, b) => a + b, 0);
+		const pointsThisQuestion = allPoints[allPoints.length-1];
 
 		console.log(allPoints + ' add up to the all points ' + result);
 
 		this.setState({
-			totalScoreForQuiz: result
+			totalScoreForQuiz: result,
+			pointsThisQuestion: pointsThisQuestion
 		}) 
 	}
 
