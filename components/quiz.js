@@ -1,5 +1,7 @@
 import React from 'react';
 import Countdown from './countdown/countdown';
+import firebase from 'firebase';
+import { Link } from 'react-router';
 
 class Quiz extends React.Component {
 	constructor(props) {
@@ -37,10 +39,18 @@ class Quiz extends React.Component {
 						timePerQuestion,
 						pointsThisQuestion } = this.state;
 
-		if (this.state.questionsWithShuffledAnswers.length < 1) {
+		if (questionsWithShuffledAnswers.length < 1) {
 			return (<div>Quiz is loading...</div>)
+		} else if ( questionsWithShuffledAnswers.length < (currentQuestion + 1) ){
+			return(
+					<div className="">
+						<h3>Your final score is { this.state.totalScoreForQuiz }</h3>
+						<Link to="/">Return to Home</Link>
+					</div>
+				)
 		} else {
 			return (questionsWithShuffledAnswers.map((question, i) => {
+				
 				return (
 					<div key={i}
 							 className={ (i === currentQuestion) ? "active" : "hide" }>
@@ -123,7 +133,7 @@ class Quiz extends React.Component {
 					streakArray.push(num);
 					let newMultiplier = ((streakArray.length * 2) / 10) + 1;
 					num = (num * newMultiplier);
-					console.log('mult ' + newMultiplier);
+					// console.log('mult ' + newMultiplier);
 				}
 			}
 			return Math.round(num);
@@ -131,8 +141,7 @@ class Quiz extends React.Component {
 
 		const result = allPoints.reduce((a, b) => a + b, 0);
 		const pointsThisQuestion = allPoints[allPoints.length-1];
-
-		console.log(allPoints + ' add up to the all points ' + result);
+		// console.log(allPoints + ' add up to the all points ' + result);
 
 		this.setState({
 			totalScoreForQuiz: result,
