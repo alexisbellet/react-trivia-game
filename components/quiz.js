@@ -58,7 +58,7 @@ class Quiz extends React.Component {
 
 		} else if ( questionsWithShuffledAnswers.length < (currentQuestion + 1) ) {
 			return (
-					<div className="">
+					<div className="prepare-for-quiz">
 						<h3>Your final score is { totalScoreForQuiz }</h3>
 						<Link to="/">Return to all Quizzes</Link>
 					</div>
