@@ -10,7 +10,8 @@ class AppLayout extends React.Component {
 		super();
 		this.state = {
 			userLoggedIn: false,
-			user: {}
+			user: {},
+			userID: ""
 		}
 	}
 
@@ -21,6 +22,7 @@ class AppLayout extends React.Component {
 				<Header isUserLoggedIn={ this.state.userLoggedIn }
 								user={ this.state.user }/>
 				{ React.cloneElement(this.props.children, {
+						userID : this.state.userID,
           	isUserLoggedIn: this.state.userLoggedIn
         	}) }
 			</div>
@@ -38,8 +40,8 @@ class AppLayout extends React.Component {
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
 	    if (user) {
-	      // console.log('AppLayout: This user just logged/signed in: ', user);
-	      this.setState({ userLoggedIn: true, user: user });
+	      console.log('AppLayout: This user just logged/signed in: ', user);
+	      this.setState({ userLoggedIn: true, user: user, userID: user.uid.replace(/"/g,"")});
 	    } else {
 	      this.setState({ userLoggedIn: false });
 	    }

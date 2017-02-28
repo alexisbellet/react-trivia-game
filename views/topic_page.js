@@ -7,35 +7,22 @@ import TopScores from '../components/top_scores';
 
 
 class TopicPage extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			quizName: '',
 			category: '',
 			questions: [],
 			perfectScore: 'a',
-			userScore: 'b',
+			userHighestScore: "",
 			highScores: { 'c':'d'}
 		}
+
+		this.setUserHighestScore = this.setUserHighestScore.bind(this);
 	}
 
 	componentDidMount() {
-		let quizName = (this.props.params.topic).replace(/-/g, " ");
-		const firebaseRef = firebase.database().ref("/quizzes/" + quizName);
-
-		firebaseRef.once('value', (snapshot) => {
-			let category = snapshot.val().category;
-			let questions = [];
-
-			for (let i = 0; i < snapshot.val().questionList.length; i++) {
-				questions.push(snapshot.val().questionList[i]);
-			}
-
-			this.setState({ 
-				quizName: quizName, 
-				category: category, 
-				questions: questions });
-		});
+		this.getQuizInfo();
 	}
 
 	render() {
@@ -47,7 +34,7 @@ class TopicPage extends React.Component {
 							{ (this.props.params.topic).replace(/-/g, " ") }
 						</h2>
 						<TopScores 
-							userScore={ this.state.userScore } 
+							userHighestScore={ this.state.userHighestScore } 
 							perfectScore={ this.state.perfectScore}
 							highScores={ this.state.highScores}
 							updateSharedScoreInfo={ this.updateSharedScoreInfo }
@@ -55,18 +42,72 @@ class TopicPage extends React.Component {
 					</aside>
 					<Quiz 
 						questions={ this.state.questions }
-						userScore={this.state.userScore }
-						perfectScore={this.state.perfectScore}
+						userHighestScore={ this.state.userHighestScore }
+						perfectScore={ this.state.perfectScore }
 						updateSharedScoreInfo={ this.updateSharedScoreInfo }
+						setUserHighestScore={ this.setUserHighestScore }
 					/>
 				</div>
 			</div>
 		)
 	}
 
-	updateSharedScoreInfo(sharedValue) {
-		this.setState({userScore: sharedValue})
+	getQuizInfo() {
+		const quizName = (this.props.params.topic).replace(/-/g, " ");
+		const firebaseRef = firebase.database().ref("/quizzes/" + quizName);
 
+		firebaseRef.once('value', (snapshot) => {
+			let category = snapshot.val().category;
+			let questions = [];
+
+			for (let i = 0; i < snapshot.val().questionList.length; i++) {
+				questions.push(snapshot.val().questionList[i]);
+			}
+
+			this.setState({
+				quizName: quizName, 
+				category: category, 
+				questions: questions });
+
+		// once the app retrieves which quiz the user is on, 
+		// it checks whether user already has a score stored for this quiz
+		this.getUserHighestScore(this.props.userID, quizName);	
+		});
+	}
+
+	setUserHighestScore(highestScore) {
+		let userID = this.props.userID;
+		let quizName = this.state.quizName;
+		let score = highestScore;
+		const firebaseRef = firebase.database().ref("/quizzes/" + quizName);
+
+		// create an object as userID : score and pushes it to firebase
+		let update = {};
+		update[userID] = score;
+		firebaseRef.child("scores").set(update);
+	}
+
+	getUserHighestScore(userID, quizName) {
+		const firebaseRef = firebase.database().ref("/quizzes/" + quizName + "/scores/" + userID);
+
+		firebaseRef.on('value', (snapshot) => {
+			let value = snapshot.val();
+			let userHighestScore;
+
+			if (!value) {
+			 	userHighestScore = 0;
+			} else {
+			  userHighestScore = value;
+			}
+
+			this.setState({
+				userHighestScore: userHighestScore
+			});
+		});
+	}
+
+	updateSharedScoreInfo(sharedValue) {
+		this.setState({userHighestScore: sharedValue})
 	}
 
 }

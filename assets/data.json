@@ -2,18 +2,7 @@
    "quizzes":{  
       "JavaScript Facts and Fun": {  
          "scores":{
-            "firstPlace":{
-               "score": "",
-               "user": ""
-            },
-            "secondPlace":{
-               "score": "",
-               "user": ""
-            },
-            "thirdPlace":{
-               "score": "",
-               "user": ""
-            }
+            "dummyData": "0"
          },
          "category":"JavaScript",
          "questionList":{  
@@ -57,18 +46,7 @@
       },
       "Popular Algorithms": {  
          "scores":{
-            "firstPlace":{
-               "score": "",
-               "user": ""
-            },
-            "secondPlace":{
-               "score": "",
-               "user": ""
-            },
-            "thirdPlace":{
-               "score": "",
-               "user": ""
-            }
+            "dummyData": "0"
          },
          "category":"Computer Science",
          "questionList":{  
@@ -88,18 +66,7 @@
       },
       "Women in STEM": {  
          "scores":{
-            "firstPlace":{
-               "score": "",
-               "user": ""
-            },
-            "secondPlace":{
-               "score": "",
-               "user": ""
-            },
-            "thirdPlace":{
-               "score": "",
-               "user": ""
-            }
+            "dummyData": "0"
          },
          "category":"STEM",
          "questionList":{  
@@ -203,18 +170,7 @@
       },
       "Which JavaScript Dev Tweeted That": {  
          "scores":{
-            "firstPlace":{
-               "score": "",
-               "user": ""
-            },
-            "secondPlace":{
-               "score": "",
-               "user": ""
-            },
-            "thirdPlace":{
-               "score": "",
-               "user": ""
-            }
+            "dummyData": "0"
          },
          "category":"JavaScript",
          "questionList":{  
@@ -258,18 +214,7 @@
       },
       "Making small talk about the weather with your coworkers": {  
          "scores":{
-            "firstPlace":{
-               "score": "",
-               "user": ""
-            },
-            "secondPlace":{
-               "score": "",
-               "user": ""
-            },
-            "thirdPlace":{
-               "score": "",
-               "user": ""
-            }
+            "dummyData": "0"
          },
          "category":"Soft Skills",
          "questionList":{  

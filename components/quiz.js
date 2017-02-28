@@ -56,8 +56,8 @@ class Quiz extends React.Component {
 		if (questionsWithShuffledAnswers.length < 1) {
 			return (<div>Quiz is loading...</div>)
 
-		} else if ( questionsWithShuffledAnswers.length < (currentQuestion + 1) ){
-			return(
+		} else if ( questionsWithShuffledAnswers.length < (currentQuestion + 1) ) {
+			return (
 					<div className="">
 						<h3>Your final score is { totalScoreForQuiz }</h3>
 						<Link to="/">Return to all Quizzes</Link>
@@ -217,9 +217,18 @@ class Quiz extends React.Component {
 		});
 	}
 
-	// componentDidUpdate(){
-	// 	this.updateSharedScoreInfo(this.state.totalScoreForQuiz);
-	// }
+	componentDidUpdate() {
+		// if the quiz is over checks whether userHighestScore passed as props is higher than
+		// the new total score, if it isn't, updates userHighestScore
+		if (this.state.currentQuestion === this.state.questionsWithShuffledAnswers.length && 
+				this.state.questionsWithShuffledAnswers.length > 0) {
+				if (this.state.totalScoreForQuiz > this.props.userHighestScore) {
+					this.props.setUserHighestScore(this.state.totalScoreForQuiz);		
+				}
+		}
+		
+		// this.updateSharedScoreInfo(this.state.totalScoreForQuiz);
+	}
 
 	calculateScore(allPoints){
 		allPoints = Object.values(allPoints);
@@ -253,7 +262,7 @@ class Quiz extends React.Component {
 		this.setState({
 			totalScoreForQuiz: result,
 			pointsThisQuestion: pointsThisQuestion
-		}) ;
+		});
 	}
 
 	displayCorrectAnswer(correctAnswer){
