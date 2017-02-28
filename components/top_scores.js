@@ -18,6 +18,7 @@ class TopScores extends React.Component {
 					<div className="scoreProgress">
 						<div className="scoreProgress--filled"></div>
 					</div>
+					<p>{ this.props.userScore }</p>
 				</div>
 				<p className="highScore--list">High Scores:</p>
 				<div className="highScore--User">

@@ -12,7 +12,10 @@ class TopicPage extends React.Component {
 		this.state = {
 			quizName: '',
 			category: '',
-			questions: []
+			questions: [],
+			perfectScore: 'a',
+			userScore: 'b',
+			highScores: { 'c':'d'}
 		}
 	}
 
@@ -43,13 +46,29 @@ class TopicPage extends React.Component {
 						<h2 className="trivia--game">
 							{ (this.props.params.topic).replace(/-/g, " ") }
 						</h2>
-						<TopScores />
+						<TopScores 
+							userScore={ this.state.userScore } 
+							perfectScore={ this.state.perfectScore}
+							highScores={ this.state.highScores}
+							updateSharedScoreInfo={ this.updateSharedScoreInfo }
+						/>
 					</aside>
-					<Quiz questions={ this.state.questions }/>
+					<Quiz 
+						questions={ this.state.questions }
+						userScore={this.state.userScore }
+						perfectScore={this.state.perfectScore}
+						updateSharedScoreInfo={ this.updateSharedScoreInfo }
+					/>
 				</div>
 			</div>
 		)
 	}
+
+	updateSharedScoreInfo(sharedValue) {
+		this.setState({userScore: sharedValue})
+
+	}
+
 }
 
 

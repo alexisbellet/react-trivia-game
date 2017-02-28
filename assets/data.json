@@ -1,8 +1,4 @@
 {   
-    "user":{  
-      "name":"",
-      "avatar":""
-   }, 
    "quizzes":{  
       "JavaScript Facts and Fun": {  
          "scores":{
@@ -124,7 +120,7 @@
                "answers":{  
                   "correct":"a Christian mob",
                   "incorrect":[  
-                     "Her father and fellow mathematician, Theon of Alexandria",
+                     "Her father Theon of Alexandria",
                      "An algorithm",
                      "Her own genius brain"
                   ],
@@ -170,9 +166,9 @@
             "5": {
                "text": "Who won the 1903 Nobel Prize in physics for her work with radioactive materials?",
                "answers":{  
-                  "correct":"Nuclear fission",
+                  "correct":"Marie Curie",
                   "incorrect":[  
-                     "Marie Curie",
+                     "Dorothy Vaughan",
                      "Ada Byron",
                      "Shirley Jackson"
                   ],
@@ -205,7 +201,7 @@
             }
          }
       },
-      "Which JavaScript Dev Tweeted That?": {  
+      "Which JavaScript Dev Tweeted That": {  
          "scores":{
             "firstPlace":{
                "score": "",

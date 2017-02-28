@@ -23,6 +23,7 @@ class Quiz extends React.Component {
     this.updateTimer = this.updateTimer.bind(this);
     this.advanceQuiz = this.advanceQuiz.bind(this);
     this.calculateScore = this.calculateScore.bind(this);
+    // this.updateSharedScoreInfo = this.updateSharedScoreInfo.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -146,7 +147,7 @@ class Quiz extends React.Component {
 		this.setState({
 			totalScoreForQuiz: result,
 			pointsThisQuestion: pointsThisQuestion
-		}) 
+		}) ;
 	}
 
 	shuffleAnswers(questions) {
@@ -228,7 +229,9 @@ class Quiz extends React.Component {
 		let correctAnswer = this.props.questions[index].answers.correct;
 
 		this.displayCorrectAnswer(correctAnswer);
-		this.calculateScore(perfectScore);
+
+		// for each this.props.question we need an object that has the max number aka remainingTime
+		// this.calculateScore(perfectScore);
 
 		// if the correct answer is chosen, pair the remaining time 
 		// and the question index in an object and add it to timePerQuestion object
@@ -239,6 +242,7 @@ class Quiz extends React.Component {
 				displayCorrectnessCorrect: true
 			});
 			this.calculateScore(timePerQuestion);
+
 		} else {
 		// else if the wrong answer is chosen, pair 0 with the question index
 		// and add it to timePerQuestion object
@@ -248,6 +252,11 @@ class Quiz extends React.Component {
 			});
 			this.calculateScore(timePerQuestion);
 		}
+	}
+
+	componentDidUpdate(){
+
+		this.updateSharedScoreInfo(this.state.totalScoreForQuiz);
 	}
 }
 
