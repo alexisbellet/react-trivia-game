@@ -2,7 +2,21 @@
    "quizzes":{  
       "JavaScript Facts and Fun": {  
          "scores":{
-            "dummyData": "0"
+            "FakeID1": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 1",
+               "score": 1
+            },
+            "FakeID2": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 2",
+               "score": 3
+            }, 
+            "FakeID3": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 3",
+               "score": 2
+            }
          },
          "category":"JavaScript",
          "questionList":{  
@@ -45,8 +59,22 @@
          }
       },
       "Popular Algorithms": {  
-         "scores":{
-            "dummyData": "0"
+         "scores": {
+            "FakeID1": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 1",
+               "score": 1
+            },
+            "FakeID2": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 2",
+               "score": 3
+            }, 
+            "FakeID3": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 3",
+               "score": 2
+            }
          },
          "category":"Computer Science",
          "questionList":{  
@@ -65,9 +93,6 @@
          }
       },
       "Women in STEM": {  
-         "scores":{
-            "dummyData": "0"
-         },
          "category":"STEM",
          "questionList":{  
             "0": {
@@ -170,7 +195,21 @@
       },
       "Which JavaScript Dev Tweeted That": {  
          "scores":{
-            "dummyData": "0"
+            "FakeID1": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 1",
+               "score": 1
+            },
+            "FakeID2": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 2",
+               "score": 3
+            }, 
+            "FakeID3": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 3",
+               "score": 2
+            }
          },
          "category":"JavaScript",
          "questionList":{  
@@ -214,7 +253,21 @@
       },
       "Making small talk about the weather with your coworkers": {  
          "scores":{
-            "dummyData": "0"
+            "FakeID1": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 1",
+               "score": 1
+            },
+            "FakeID2": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 2",
+               "score": 3
+            }, 
+            "FakeID3": {
+               "avatar": "../assets/avatars/noun_709545_cc.svg",
+               "name" : "Fake Person 3",
+               "score": 2
+            }
          },
          "category":"Soft Skills",
          "questionList":{  

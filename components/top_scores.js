@@ -21,7 +21,6 @@ class TopScores extends React.Component {
   			});
 			});
 
-			console.log('here"s an array of the best players for this quiz', bestPlayers);
 			this.setState({
 				bestPlayers: bestPlayers.reverse()
 			});
@@ -29,10 +28,9 @@ class TopScores extends React.Component {
 	}
 
 	render() {
-		console.log('render: bestPlayers', this.state.bestPlayers);
 		return (
 			<div className="top-scores">
-				<p className="highScore--list  highScore--list__currentUser">You:</p>
+				<p className="highScore--list  highScore--list__currentUser">So far, your current best score for this quiz is:</p>
 				<div className="highScore--User  highScore--User__thisUser">
 					<div className="user--identifier">
 						<img src={ this.context.currentPhoto } alt="User Avatar" className="userAvatar"/>
@@ -43,7 +41,11 @@ class TopScores extends React.Component {
 						<p className="score-display">{ this.props.userHighestScore }</p>
 					</div>
 				</div>
-				<h4 className="highScore--list">Here are the current top scorers!</h4>
+				
+
+				<h4 className="highScore--list">
+					{ this.state.bestPlayers.length < 1 ? "There are currently no top scorer for this quiz, be the first!" : "Here are the top scorers for this quiz!" }
+				</h4>
 
 				{ this.state.bestPlayers.map((user, index) => {
 					return (
