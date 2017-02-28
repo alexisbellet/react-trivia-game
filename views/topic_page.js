@@ -13,7 +13,8 @@ class TopicPage extends React.Component {
 			quizName: '',
 			category: '',
 			questions: [],
-			perfectScore: 'a'
+			perfectScore: 'a',
+			userHighestScore: 0
 		}
 		this.setUserHighestScore = this.setUserHighestScore.bind(this);
 		this.setPerfectScore = this.setPerfectScore.bind(this);
@@ -78,6 +79,7 @@ class TopicPage extends React.Component {
 	}
 
 	setUserHighestScore(highestScore) {
+		console.log('setScore');
 		let userID = this.props.userID;
 		let userAvatar = this.props.user.photoURL;
 		let userName = this.props.user.displayName;
@@ -92,6 +94,7 @@ class TopicPage extends React.Component {
 			avatar: userAvatar,
 			score: score
 		};
+
 		firebaseRef.child("scores").set(update);
 	}
 
