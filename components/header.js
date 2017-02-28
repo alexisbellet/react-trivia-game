@@ -18,7 +18,6 @@ class Header extends React.Component {
 			  	<header>
 			  		<Link to={'/'} >
 				  		<div className="logo" >
-				  			<img src="" alt="Nerdia Logo"/>
 					  		<h1>Nerdia Tech Trivia</h1>
 				  		</div>
 			  		</Link>

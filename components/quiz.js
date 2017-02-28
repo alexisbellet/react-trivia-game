@@ -45,7 +45,7 @@ class Quiz extends React.Component {
 			return(
 					<div className="">
 						<h3>Your final score is { this.state.totalScoreForQuiz }</h3>
-						<Link to="/">Return to Home</Link>
+						<Link to="/">Return to all Quizzes</Link>
 					</div>
 				)
 		} else {
@@ -224,11 +224,11 @@ class Quiz extends React.Component {
 	}
 
 	checkCorrectness(answer, index) {
-		// console.log('checkCorrectness for', answer, index);
 		const { timePerQuestion, currentQuestion, remainingTime } = this.state;
 		let correctAnswer = this.props.questions[index].answers.correct;
 
 		this.displayCorrectAnswer(correctAnswer);
+		this.calculateScore(perfectScore);
 
 		// if the correct answer is chosen, pair the remaining time 
 		// and the question index in an object and add it to timePerQuestion object
@@ -249,7 +249,6 @@ class Quiz extends React.Component {
 			this.calculateScore(timePerQuestion);
 		}
 	}
-
 }
 
 export default Quiz;

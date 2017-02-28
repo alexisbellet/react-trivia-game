@@ -89,6 +89,207 @@
                }
             }
          }
+      },
+      "Women in STEM": {  
+         "scores":{
+            "firstPlace":{
+               "score": "",
+               "user": ""
+            },
+            "secondPlace":{
+               "score": "",
+               "user": ""
+            },
+            "thirdPlace":{
+               "score": "",
+               "user": ""
+            }
+         },
+         "category":"STEM",
+         "questionList":{  
+            "0": {
+               "text": "French math genius Emilie du Châtelet was mistress to which famous Enlightenment thinker?",
+               "answers":{  
+                  "correct":"Voltaire",
+                  "incorrect":[  
+                     "Rousseau",
+                     "Proust",
+                     "Montesquieu"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            },
+            "1": {
+               "text": "Egyptian mathematician Hypatia was killed by whom?",
+               "answers":{  
+                  "correct":"a Christian mob",
+                  "incorrect":[  
+                     "Her father and fellow mathematician, Theon of Alexandria",
+                     "An algorithm",
+                     "Her own genius brain"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            },
+            "2": {
+               "text": "Around 50 percent of U.S. science and engineering graduate students are women. What percentage of STEM (science, technology, engineering and math) jobs do they claim in the United States?",
+               "answers":{  
+                  "correct":"24%",
+                  "incorrect":[  
+                     "53%",
+                     "16%",
+                     "31%"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            },
+            "3": {
+               "text": "Chemist Rosalind Franklin's photographs of what helped earn a Nobel Prize for James Watson, Francis Crick and Maurice Wilkins?",
+               "answers":{  
+                  "correct":"DNA",
+                  "incorrect":[  
+                     "X Chromosomes",
+                     "Neurons",
+                     "ELectrons"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            },
+            "4": {
+               "text": "Austrian physicist Lise Meitner and her research assistant discovered what atomic reaction?",
+               "answers":{  
+                  "correct":"Nuclear fission",
+                  "incorrect":[  
+                     "Nuclear fusion",
+                     "Radioactivity",
+                     "Uranium poisoning"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            },
+            "5": {
+               "text": "Who won the 1903 Nobel Prize in physics for her work with radioactive materials?",
+               "answers":{  
+                  "correct":"Nuclear fission",
+                  "incorrect":[  
+                     "Marie Curie",
+                     "Ada Byron",
+                     "Shirley Jackson"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            },
+            "6": {
+               "text": "British astrophysicist Jocelyn Bell initially mistook her discovery of radio signals in outer space for what?",
+               "answers":{  
+                  "correct":"Aliens",
+                  "incorrect":[  
+                     "A black hole",
+                     "Russian spacecraft",
+                     "Radio signals"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            },
+            "7": {
+               "text": "Who was the first black woman to earn a Ph.D. from MIT?",
+               "answers":{  
+                  "correct":"Shirley Jackson",
+                  "incorrect":[  
+                     "Dolores Shockley",
+                     "Mae Jemison",
+                     "Dorothy Vaughan"
+                  ],
+                  "source":"science.howstuffworks.com/innovation/scientific-experiments/female-scientists-quiz.htm"
+               }
+            }
+         }
+      },
+      "Which JavaScript Dev Tweeted That?": {  
+         "scores":{
+            "firstPlace":{
+               "score": "",
+               "user": ""
+            },
+            "secondPlace":{
+               "score": "",
+               "user": ""
+            },
+            "thirdPlace":{
+               "score": "",
+               "user": ""
+            }
+         },
+         "category":"JavaScript",
+         "questionList":{  
+            "0": {
+               "text": "Any application that can be written in JavaScript, will eventually be written in JavaScript.",
+               "answers":{  
+                  "correct":"Jeff Atwood",
+                  "incorrect":[  
+                     "John Resig",
+                     "Rebecca Murphey",
+                     "Addy Osmani"
+                  ],
+                  "source":""
+               }
+            },
+            "1": {
+               "text": "Java is to JavaScript what Car is to Carpet.",
+               "answers":{  
+                  "correct":"Chris Heilmann",
+                  "incorrect":[  
+                     "John Resig",
+                     "Rebecca Murphey",
+                     "Addy Osmani"
+                  ],
+                  "source":"goodreads.com/quotes/tag/javascript"
+               }
+            },
+            "2": {
+               "text": "JavaScript’s global scope is like a public toilet. You can’t avoid going in there, but try to limit your contact with surfaces when you do.",
+               "answers":{  
+                  "correct":"Dmitry Baranovskiy",
+                  "incorrect":[  
+                     "Ben Alman",
+                     "Paul Irish",
+                     "Yehuda Katz"
+                  ],
+                  "source":"goodreads.com/quotes/tag/javascript"
+               }
+            }
+         }
+      },
+      "Making small talk about the weather with your coworkers": {  
+         "scores":{
+            "firstPlace":{
+               "score": "",
+               "user": ""
+            },
+            "secondPlace":{
+               "score": "",
+               "user": ""
+            },
+            "thirdPlace":{
+               "score": "",
+               "user": ""
+            }
+         },
+         "category":"Soft Skills",
+         "questionList":{  
+            "0": {
+               "text": "What is the driest desert on Earth?",
+               "answers":{  
+                  "correct":"The Atacama Desert",
+                  "incorrect":[  
+                     "The Sahara Desert",
+                     "The Kalahari Desert",
+                     "The Great Basin Desert"
+                  ],
+                  "source":"https\/\/:medium.com/@_marcos_otero/the-real-10-algorithms-that-dominate-our-world-e95fa9f16c04#.p90x20j1x"
+               }
+            }
+         }
       }
    }
 }

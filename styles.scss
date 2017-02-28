@@ -2,6 +2,9 @@
 // MIXINS
 // /////////////////////
 
+
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 $font-stack:    Helvetica, sans-serif;
 $primary-color: ghostwhite;
 $neutral-color: #ddd;
@@ -37,6 +40,9 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  margin-left: 30px;
+  font-family: Pacifico;
+  letter-spacing: 0.08em;
 }
 
 .header-link-container {
@@ -59,7 +65,7 @@ header {
 
 .poster--title {
   color: $primary-color;
-  font: 80px cursive;
+  font: 80px Pacifico;
   max-width: 60%;
   text-shadow: 5px 4px 2px black;
 }
