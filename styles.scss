@@ -56,7 +56,6 @@ header {
   background: $secondary-color;
   background: url('/assets/min-code-on-screen.jpg');
   background-size: cover;
-  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,7 +65,7 @@ header {
 .poster--title {
   color: $primary-color;
   font: 80px Pacifico;
-  max-width: 60%;
+  max-width: 90%;
   text-shadow: 5px 4px 2px black;
 }
 
@@ -117,6 +116,22 @@ header {
 .topic-link-container {
   padding: 20px;
   text-align: center;
+
+  a {
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+    transition: all 0.3s;
+  }
+
+  a:hover, a:focus, a:active {
+    color: $secondary-color;
+    text-decoration: none;
+  }
+}
+
+.trivia--game:hover, .trivia--game:focus, .trivia--game:active {
+  box-shadow: -10px -10px 0px 0px #3E842E;
 }
 
 .avatar {
@@ -328,6 +343,11 @@ header {
       top: -20px;
     }
   }
+}
+
+.score-display {
+  font-size: 46px;
+  font-family: courier;
 }
 
 .highScore--User {

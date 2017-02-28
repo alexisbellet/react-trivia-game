@@ -13,12 +13,10 @@ class TopicPage extends React.Component {
 			quizName: '',
 			category: '',
 			questions: [],
-			perfectScore: 'a',
-			userHighestScore: 0,
-			highScores: { 'c':'d'}
+			perfectScore: 'a'
 		}
-
 		this.setUserHighestScore = this.setUserHighestScore.bind(this);
+		this.setPerfectScore = this.setPerfectScore.bind(this);
 	}
 
 	componentDidMount() {
@@ -42,7 +40,7 @@ class TopicPage extends React.Component {
 					<Quiz 
 						questions={ this.state.questions }
 						userHighestScore={ this.state.userHighestScore }
-						perfectScore={ this.state.perfectScore }
+						setPerfectScore={ this.setPerfectScore }
 						setUserHighestScore={ this.setUserHighestScore }
 					/>
 				</div>
@@ -70,6 +68,12 @@ class TopicPage extends React.Component {
 		// once the app retrieves which quiz the user is on, 
 		// it checks whether user already has a score stored for this quiz
 		this.getUserHighestScore(this.props.userID, quizName);	
+		});
+	}
+
+	setPerfectScore(perfectScore) {
+		this.setState({
+			perfectScore: perfectScore
 		});
 	}
 

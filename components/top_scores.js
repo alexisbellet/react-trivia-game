@@ -36,15 +36,15 @@ class TopScores extends React.Component {
 						<img src={ this.context.currentPhoto } alt="User Avatar" className="userAvatar"/>
 						<p className="display">{ this.context.currentUserName }</p>
 					</div>
-					<div className="scoreProgress">
+					{/*<div className="scoreProgress">
 						<div className="scoreProgress--filled"></div>
-						<p className="score-display">{ this.props.userHighestScore }</p>
-					</div>
+					</div>*/}
+					<p className="score-display">{ this.props.userHighestScore > 0 ? this.props.userHighestScore : 0 }</p>
 				</div>
 				
 
 				<h4 className="highScore--list">
-					{ this.state.bestPlayers.length < 1 ? "There are currently no top scorer for this quiz, be the first!" : "Here are the top scorers for this quiz!" }
+					{ this.state.bestPlayers.length < 1 ? "There are currently no top scorers for this quiz, be the first!" : "Here are the top scorers for this quiz!" }
 				</h4>
 
 				{ this.state.bestPlayers.map((user, index) => {
@@ -54,10 +54,10 @@ class TopScores extends React.Component {
 								<img src={ user.avatar } alt="User Avatar" className="userAvatar"/>
 								<p className="display">{ user.name }</p>
 							</div>
-							<div className="scoreProgress">
+							{/*<div className="scoreProgress">
 								<div className="scoreProgress--filled"></div>
-								<p className="score-display">{ user.score }</p>
-							</div>
+							</div>*/}
+							<p className="score-display">{ user.score }</p>
 						</div>
 					)
 				}) }

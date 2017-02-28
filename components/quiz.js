@@ -17,7 +17,8 @@ class Quiz extends React.Component {
       correctAnswer: null,
       pointsThisQuestion: 0,
       timePerQuestion: {},
-      totalScoreForQuiz: 0
+      totalScoreForQuiz: 0,
+      perfectScoreForQuiz: 0
     }
     this.shuffleAnswers = this.shuffleAnswers.bind(this);
     this.startQuiz = this.startQuiz.bind(this);
@@ -186,9 +187,6 @@ class Quiz extends React.Component {
 
 		this.displayCorrectAnswer(correctAnswer);
 
-		// for each this.props.question we need an object that has the max number aka remainingTime
-		// this.calculateScore(perfectScore);
-
 		// if the correct answer is chosen, pair the remaining time 
 		// and the question index in an object and add it to timePerQuestion object
 		if (answer === correctAnswer) {
@@ -223,6 +221,7 @@ class Quiz extends React.Component {
 				this.state.questionsWithShuffledAnswers.length > 0) {
 			if (this.state.totalScoreForQuiz > this.props.userHighestScore || this.props.userHighestScore === 0) {
 				this.props.setUserHighestScore(this.state.totalScoreForQuiz);		
+				this.props.setPerfectScore(this.state.perfectScoreForQuiz);
 			}
 		}
 	}
@@ -230,6 +229,7 @@ class Quiz extends React.Component {
 	calculateScore(allPoints){
 		allPoints = Object.values(allPoints);
 		allPoints = allPoints.map(Number);
+		const pointsLength = allPoints.length;
 
 		let streakArray = [];
 
@@ -240,14 +240,24 @@ class Quiz extends React.Component {
 
 				if (streakArray.length == 0 ) { // there is no streak so stays
 					streakArray.push(num);
-					// console.log('no streak length is' + streakArray.length + ' so num is ' + num, );
 
 				} else if (streakArray.length !== 0){ // streak so multiply
 					streakArray.push(num);
 					let newMultiplier = ((streakArray.length * 2) / 10) + 1;
 					num = (num * newMultiplier);
-					// console.log('mult ' + newMultiplier);
+
 				}
+				let perfectNum;
+
+				if (i === 0) {
+					perfectNum = 20;
+				} else {
+					perfectNum = (((pointsLength - 1) * 2) / 10) + 1;
+					perfectNum = (20 * perfectNum);
+				}
+				this.setState({
+					perfectScoreForQuiz: perfectNum,
+				});
 			}
 			return Math.round(num);
 		});
