@@ -9,16 +9,24 @@ class TopScores extends React.Component {
 		}
 	}
 
-	// componentWillReceiveProps(nextProps) {
-	// 	if (nextProps.quizName) {
-	// 		const firebaseRef = firebase.database().ref("/quizzes/" + nextProps.quizName + "/scores");
-	// 		firebaseRef.orderByValue().limitToLast(3).on('value', (snapshot) => {
-	// 			snapshot.forEach(function(data) {
- //    			data.key + " score is " + data.val());
- //  			});
-	// 		});
-	// 	}	
-	// }
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.quizName) {
+			// if quizName is passed as props, retrieve the three best players for this quiz and 
+			// store them in this.state.bestPlayers
+			const firebaseRef = firebase.database().ref("/quizzes/" + nextProps.quizName + "/scores");
+			let bestPlayers = [];
+			firebaseRef.orderByChild("score").limitToLast(3).on('value', (snapshot) => {
+				snapshot.forEach(function(data) {
+					bestPlayers.push(data.val());
+  			});
+			});
+
+			console.log('here"s an array of the best players for this quiz', bestPlayers);
+			this.setState({
+				bestPlayers: bestPlayers
+			});
+		}	
+	}
 
 	render() {
 		return (

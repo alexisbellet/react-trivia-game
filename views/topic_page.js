@@ -14,7 +14,7 @@ class TopicPage extends React.Component {
 			category: '',
 			questions: [],
 			perfectScore: 'a',
-			userHighestScore: "",
+			userHighestScore: 0,
 			highScores: { 'c':'d'}
 		}
 
@@ -34,7 +34,7 @@ class TopicPage extends React.Component {
 							{ (this.props.params.topic).replace(/-/g, " ") }
 						</h2>
 						<TopScores 
-							userHighestScore={ this.state.userHighestScore } 
+							userHighestScore={ this.state.userHighestScore }
 							perfectScore={ this.state.perfectScore }
 							quizName={ this.state.quizName }
 						/>

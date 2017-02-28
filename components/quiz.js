@@ -218,12 +218,12 @@ class Quiz extends React.Component {
 
 	componentDidUpdate() {
 		// if the quiz is over checks whether userHighestScore passed as props is higher than
-		// the new total score, if it isn't, updates userHighestScore
+		// the new total score, if it isn't or that userHighestScore is 0, updates firebase with userHighestScore
 		if (this.state.currentQuestion === this.state.questionsWithShuffledAnswers.length && 
 				this.state.questionsWithShuffledAnswers.length > 0) {
-				if (this.state.totalScoreForQuiz > this.props.userHighestScore) {
-					this.props.setUserHighestScore(this.state.totalScoreForQuiz);		
-				}
+			if (this.state.totalScoreForQuiz > this.props.userHighestScore || this.props.userHighestScore === 0) {
+				this.props.setUserHighestScore(this.state.totalScoreForQuiz);		
+			}
 		}
 	}
 
