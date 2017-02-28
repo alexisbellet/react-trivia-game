@@ -35,16 +35,14 @@ class TopicPage extends React.Component {
 						</h2>
 						<TopScores 
 							userHighestScore={ this.state.userHighestScore } 
-							perfectScore={ this.state.perfectScore}
-							highScores={ this.state.highScores}
-							updateSharedScoreInfo={ this.updateSharedScoreInfo }
+							perfectScore={ this.state.perfectScore }
+							quizName={ this.state.quizName }
 						/>
 					</aside>
 					<Quiz 
 						questions={ this.state.questions }
 						userHighestScore={ this.state.userHighestScore }
 						perfectScore={ this.state.perfectScore }
-						updateSharedScoreInfo={ this.updateSharedScoreInfo }
 						setUserHighestScore={ this.setUserHighestScore }
 					/>
 				</div>
@@ -77,13 +75,19 @@ class TopicPage extends React.Component {
 
 	setUserHighestScore(highestScore) {
 		let userID = this.props.userID;
+		let userAvatar = this.props.user.photoURL;
+		let userName = this.props.user.displayName;
 		let quizName = this.state.quizName;
 		let score = highestScore;
 		const firebaseRef = firebase.database().ref("/quizzes/" + quizName);
 
 		// create an object as userID : score and pushes it to firebase
 		let update = {};
-		update[userID] = score;
+		update[userID] = {
+			name: userName,
+			avatar: userAvatar,
+			score: score
+		};
 		firebaseRef.child("scores").set(update);
 	}
 
@@ -91,23 +95,21 @@ class TopicPage extends React.Component {
 		const firebaseRef = firebase.database().ref("/quizzes/" + quizName + "/scores/" + userID);
 
 		firebaseRef.on('value', (snapshot) => {
-			let value = snapshot.val();
-			let userHighestScore;
+			if (snapshot.val()) {
+				let userScore = snapshot.val().score;
+				let userHighestScore;
 
-			if (!value) {
-			 	userHighestScore = 0;
-			} else {
-			  userHighestScore = value;
+				if (!userScore) {
+				 	userHighestScore = 0;
+				} else {
+				  userHighestScore = userScore;
+				}
+
+				this.setState({
+					userHighestScore: userHighestScore
+				});
 			}
-
-			this.setState({
-				userHighestScore: userHighestScore
-			});
 		});
-	}
-
-	updateSharedScoreInfo(sharedValue) {
-		this.setState({userHighestScore: sharedValue})
 	}
 
 }

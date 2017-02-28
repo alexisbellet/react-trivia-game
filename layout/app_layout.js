@@ -22,6 +22,7 @@ class AppLayout extends React.Component {
 				<Header isUserLoggedIn={ this.state.userLoggedIn }
 								user={ this.state.user }/>
 				{ React.cloneElement(this.props.children, {
+						user: this.state.user,
 						userID : this.state.userID,
           	isUserLoggedIn: this.state.userLoggedIn
         	}) }

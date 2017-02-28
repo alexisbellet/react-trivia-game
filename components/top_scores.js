@@ -2,9 +2,23 @@ import React from 'react';
 import firebase from 'firebase';
 
 class TopScores extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		this.state = {
+			bestPlayers: []
+		}
 	}
+
+	// componentWillReceiveProps(nextProps) {
+	// 	if (nextProps.quizName) {
+	// 		const firebaseRef = firebase.database().ref("/quizzes/" + nextProps.quizName + "/scores");
+	// 		firebaseRef.orderByValue().limitToLast(3).on('value', (snapshot) => {
+	// 			snapshot.forEach(function(data) {
+ //    			data.key + " score is " + data.val());
+ //  			});
+	// 		});
+	// 	}	
+	// }
 
 	render() {
 		return (

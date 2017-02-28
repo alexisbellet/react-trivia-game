@@ -24,7 +24,6 @@ class Quiz extends React.Component {
     this.updateTimer = this.updateTimer.bind(this);
     this.checkCorrectness = this.checkCorrectness.bind(this);
     this.calculateScore = this.calculateScore.bind(this);
-    // this.updateSharedScoreInfo = this.updateSharedScoreInfo.bind(this);
     this.advanceQuiz = this.advanceQuiz.bind(this);
 	}
 
@@ -226,8 +225,6 @@ class Quiz extends React.Component {
 					this.props.setUserHighestScore(this.state.totalScoreForQuiz);		
 				}
 		}
-		
-		// this.updateSharedScoreInfo(this.state.totalScoreForQuiz);
 	}
 
 	calculateScore(allPoints){
