@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import {Link} from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class SignUpPage extends React.Component {
 	constructor() {
