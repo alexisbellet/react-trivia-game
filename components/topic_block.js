@@ -8,10 +8,11 @@ class TopicBlock extends React.Component {
 		return (
 			<div className="trivia--game">
 				<div className="categoryTitle">{quizDetails.details.category}</div>
-				<Link to={ isUserLoggedIn ? 
+				<div className="topic-link-container">
+					<Link to={ isUserLoggedIn ? 
 						("/topic/" + (quizDetails.name).replace(/ /g, "-")) : 
 						("/log-in?topic=" + (quizDetails.name).replace(/ /g, "-")) }>{ quizDetails.name }</Link>
-
+				</div>
 			</div>
 		)
 	}
