@@ -23,12 +23,13 @@ class TopScores extends React.Component {
 
 			console.log('here"s an array of the best players for this quiz', bestPlayers);
 			this.setState({
-				bestPlayers: bestPlayers
+				bestPlayers: bestPlayers.reverse()
 			});
 		}	
 	}
 
 	render() {
+		console.log('render: bestPlayers', this.state.bestPlayers);
 		return (
 			<div className="top-scores">
 				<p className="highScore--list  highScore--list__currentUser">You:</p>
@@ -39,37 +40,26 @@ class TopScores extends React.Component {
 					</div>
 					<div className="scoreProgress">
 						<div className="scoreProgress--filled"></div>
-					</div>
-					<p>{ this.props.userHighestScore }</p>
-				</div>
-				<p className="highScore--list">High Scores:</p>
-				<div className="highScore--User">
-					<div className="user--identifier">
-						<img src="" alt="User Avatar" className="userAvatar"/>
-						<p className="display">No. 1 Score Username</p>
-					</div>
-					<div className="scoreProgress">
-						<div className="scoreProgress--filled"></div>
+						<p className="score-display">{ this.props.userHighestScore }</p>
 					</div>
 				</div>
-				<div className="highScore--User">
-					<div className="user--identifier">
-						<img src="" alt="User Avatar" className="userAvatar"/>
-						<p className="display">No. 3 Score Username</p>
-					</div>
-					<div className="scoreProgress">
-						<div className="scoreProgress--filled"></div>
-					</div>
-				</div>
-				<div className="highScore--User">
-					<div className="user--identifier">
-						<img src="" alt="User Avatar" className="userAvatar"/>
-						<p className="display">No. 3 Score Username</p>
-					</div>
-					<div className="scoreProgress">
-						<div className="scoreProgress--filled"></div>
-					</div>
-				</div>
+				<h4 className="highScore--list">Here are the current top scorers!</h4>
+
+				{ this.state.bestPlayers.map((user, index) => {
+					return (
+						<div className="highScore--User" key={index}>
+							<div className="user--identifier">
+								<img src={ user.avatar } alt="User Avatar" className="userAvatar"/>
+								<p className="display">{ user.name }</p>
+							</div>
+							<div className="scoreProgress">
+								<div className="scoreProgress--filled"></div>
+								<p className="score-display">{ user.score }</p>
+							</div>
+						</div>
+					)
+				}) }
+
 			</div>
 		)
 	}
