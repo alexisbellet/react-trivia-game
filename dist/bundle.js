@@ -27944,7 +27944,8 @@
 				quizName: '',
 				category: '',
 				questions: [],
-				perfectScore: 'a'
+				perfectScore: 'a',
+				userHighestScore: 0
 			};
 			_this.setUserHighestScore = _this.setUserHighestScore.bind(_this);
 			_this.setPerfectScore = _this.setPerfectScore.bind(_this);
@@ -28029,16 +28030,16 @@
 				var userName = this.props.user.displayName;
 				var quizName = this.state.quizName;
 				var score = highestScore;
-				var firebaseRef = _firebase2.default.database().ref("/quizzes/" + quizName);
+				var firebaseRef = _firebase2.default.database().ref("/quizzes/" + quizName + "/scores/" + userID);
 
 				// create an object as userID : score and pushes it to firebase
-				var update = {};
-				update[userID] = {
+				var update = {
 					name: userName,
 					avatar: userAvatar,
 					score: score
 				};
-				firebaseRef.child("scores").set(update);
+
+				firebaseRef.set(update);
 			}
 		}, {
 			key: 'getUserHighestScore',
@@ -28397,6 +28398,8 @@
 				// if the quiz is over checks whether userHighestScore passed as props is higher than
 				// the new total score, if it isn't or that userHighestScore is 0, updates firebase with userHighestScore
 				if (this.state.currentQuestion === this.state.questionsWithShuffledAnswers.length && this.state.questionsWithShuffledAnswers.length > 0) {
+					console.log('totalScoreForQuiz', this.state.totalScoreForQuiz);
+					console.log('userHighestScore', this.props.userHighestScore);
 					if (this.state.totalScoreForQuiz > this.props.userHighestScore || this.props.userHighestScore === 0) {
 						this.props.setUserHighestScore(this.state.totalScoreForQuiz);
 						this.props.setPerfectScore(this.state.perfectScoreForQuiz);

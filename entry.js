@@ -11,7 +11,7 @@ import SignUpPage from './views/signup_page';
 import ResetPasswordPage from './views/resetpassword_page';
 import PageNotFound from './views/notfound_page';
 
-require("file?name=[name].[ext]!./index.html");
+require("file-loader?name=[name].[ext]!./index.html");
 require("./styles.scss");
 
 import firebase from 'firebase'; 

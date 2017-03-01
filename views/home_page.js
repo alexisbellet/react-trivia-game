@@ -88,8 +88,7 @@ class HomePage extends React.Component {
 											quizDetails={quiz}
 											isUserLoggedIn={ this.props.isUserLoggedIn }
 								/>
-							))
-							: // else
+							)) : // else
 							this.state.listOfQuizzes.map( (quiz) => (
 								<TopicBlock key={quiz.name}
 											quizDetails={quiz}

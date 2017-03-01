@@ -68,7 +68,7 @@ class TopicPage extends React.Component {
 
 		// once the app retrieves which quiz the user is on, 
 		// it checks whether user already has a score stored for this quiz
-		this.getUserHighestScore(this.props.userID, quizName);	
+		this.getUserHighestScore(this.props.userID, quizName);
 		});
 	}
 
@@ -79,23 +79,21 @@ class TopicPage extends React.Component {
 	}
 
 	setUserHighestScore(highestScore) {
-		console.log('setScore');
 		let userID = this.props.userID;
 		let userAvatar = this.props.user.photoURL;
 		let userName = this.props.user.displayName;
 		let quizName = this.state.quizName;
 		let score = highestScore;
-		const firebaseRef = firebase.database().ref("/quizzes/" + quizName);
+		const firebaseRef = firebase.database().ref("/quizzes/" + quizName + "/scores/" + userID);
 
 		// create an object as userID : score and pushes it to firebase
-		let update = {};
-		update[userID] = {
+		let update = {
 			name: userName,
 			avatar: userAvatar,
 			score: score
 		};
 
-		firebaseRef.child("scores").set(update);
+		firebaseRef.set(update);
 	}
 
 	getUserHighestScore(userID, quizName) {
