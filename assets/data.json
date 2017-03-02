@@ -321,11 +321,11 @@
                }
             },
             "2": {
-               "text": "Did you know that appart from a rock band and social concept, Smalltalk is also",
+               "text": "Did you know that, appart from a rock band and social concept, Smalltalk is also",
                "answers":{  
                   "correct":"A programming language",
                   "incorrect":[  
-                     "A brand of computer",
+                     "A brand of computers",
                      "An algorithm used by Google",
                      "A JavaScript framework"
                   ],
