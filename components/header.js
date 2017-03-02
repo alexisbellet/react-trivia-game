@@ -24,9 +24,9 @@ class Header extends React.Component {
 			  		
 			  		{ // if user is loggedIn display avatar, if not, display signup & login buttons
 			  			isUserLoggedIn ? 
-			  			(<div>
+			  			(<div className="header-avatar-container" onClick={() => this.toggleUserDetails() }>
+			  				<img className="avatar" src={ user.photoURL } alt="User Avatar"/>
 			  				<span>Hi { displayName }!</span>
-			  				<img className="avatar" src={ user.photoURL } alt="User Avatar" onClick={() => this.toggleUserDetails() }/>
 			  			</div> ) :
 			  			(<div className="header-link-container">
 			  				<Link to="/sign-up" className="btn">Sign up</Link> 

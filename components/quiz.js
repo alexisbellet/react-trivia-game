@@ -89,7 +89,7 @@ class Quiz extends React.Component {
 										<p>You answered the question correctly, you get {pointsThisQuestion} points</p> :
 										<p>You answered the question incorrectly. You get 0 new points...</p> }
 									<p>Your score is { totalScoreForQuiz }</p> 
-									<button onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
+									<button className="btn" onClick={(evt) => this.advanceQuiz(evt.target.value, currentQuestion)}>Next Question</button>
 								</div>
 							: null }
 					</div>
@@ -108,7 +108,7 @@ class Quiz extends React.Component {
 
 		// before the quiz starts, display a welcome screen and ask the user for action to start the quiz
 		return (
-			<main className="quiz-container col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+			<main className="quiz-container col-xs-12 col-sm-12 col-md-9 col-lg-9" >
 				{ hasQuizStarted ? this.displayQuiz() : this.prepareForQuiz() }
 
 				{ hasUserAnswered || !hasQuizStarted ?

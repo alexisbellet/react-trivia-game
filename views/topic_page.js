@@ -28,7 +28,7 @@ class TopicPage extends React.Component {
 		return (
 			<div className="col-12">
 				<div className="row">
-					<aside className="quiz-title  col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<aside className="quiz-title col-xs-12 col-sm-12 col-md-3 col-lg-3">
 						<h2 className="trivia--game">
 							{ (this.props.params.topic).replace(/-/g, " ") }
 						</h2>
