@@ -1,7 +1,7 @@
 # react-trivia-game
 Online trivia platform as Single Page Application using:
- ** React.js & SASS for the front end
- ** Firebase for the back-end and hosting
+ * React.js & SASS for the front end
+ * Firebase for the back-end and hosting
 
 [Live version available here!](https://react-trivia-game.firebaseapp.com/)  
 
