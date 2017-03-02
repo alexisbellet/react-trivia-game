@@ -89,7 +89,32 @@
                   ],
                   "source":"https\/\/:medium.com/@_marcos_otero/the-real-10-algorithms-that-dominate-our-world-e95fa9f16c04#.p90x20j1x"
                }
+            },
+            "1": {
+               "text": "Who invented the secure hash (series of) algorithm(s)?",
+               "answers":{  
+                  "correct":"The US National Institute of Standards and Technology",
+                  "incorrect":[  
+                     "The US National Security Agency",
+                     "Goldman Sachs' Department of Technology",
+                     "Adobe Systems"
+                  ],
+                  "source":"https://medium.com/@_marcos_otero/the-real-10-algorithms-that-dominate-our-world-e95fa9f16c04#.lgb4dfx2w"
+               },
+            },
+            "2": {
+               "text": "In 1894, Paul Bachmann & Edmund Landau invented a concept that later was used to compare algorithms run time efficiency. What is that concept?",
+               "answers":{  
+                  "correct":"The big O notation",
+                  "incorrect":[  
+                     "Cantor’s notation system",
+                     "The Knuth's up-arrow notation",
+                     "Non-standard positional numeral systems"
+                  ],
+                  "source":""
+               },
             }
+
          }
       },
       "Women in STEM": {  
@@ -282,7 +307,31 @@
                   ],
                   "source":"https\/\/:medium.com/@_marcos_otero/the-real-10-algorithms-that-dominate-our-world-e95fa9f16c04#.p90x20j1x"
                }
-            }
+            },
+            "1": {
+               "text": "Do you know which is the largest ocean in the world?",
+               "answers":{  
+                  "correct":"The Pacific Ocean",
+                  "incorrect":[  
+                     "The Atlantic Ocean",
+                     "The Indian Ocean",
+                     "The Arctic Ocean"
+                  ],
+                  "source":"http://oceanservice.noaa.gov/facts/biggestocean.html"
+               }
+            },
+            "2": {
+               "text": "Did you know that appart from a rock band and social concept, Smalltalk is also",
+               "answers":{  
+                  "correct":"A programming language",
+                  "incorrect":[  
+                     "A brand of computer",
+                     "An algorithm used by Google",
+                     "A JavaScript framework"
+                  ],
+                  "source":"https://en.wikipedia.org/wiki/Smalltalk"
+               }
+            },
          }
       }
    }
